@@ -3,7 +3,7 @@
     import { onMount } from "svelte";
     import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
     import ellipse from "$lib/images/Ellipse 22.png";
-    import hero1 from "$lib/images/Group 3445 (1).png";
+    import hero1 from "$lib/images/Group 3446 (1).png";
     import waves from "$lib/images/pngwing.com (2) 1.png";
 
     let scene, camera, renderer, mesh;
@@ -30,7 +30,7 @@
 
         // Load STL model
         const loader = new STLLoader();
-        loader.load("/output (2).stl", (geometry) => {
+        loader.load("/output (1).stl", (geometry) => {
             // Compute bounding box to find center of "A" and "I"
             geometry.computeBoundingBox();
             const bbox = geometry.boundingBox;
@@ -58,7 +58,7 @@
                 mesh.rotation.x = Math.sin(angle) * 0 + THREE.MathUtils.degToRad(0);
 
                 // Expand & contract effect (illusion of depth)
-                const scaleFactor = 0.4 + 0.01 * Math.sin(angle); // Expands on one side
+                const scaleFactor = 0.3 + 0.01 * Math.sin(angle); // Expands on one side
                 mesh.scale.set(scaleFactor, scaleFactor, scaleFactor);
             }
 
@@ -68,11 +68,11 @@
     });
 </script>
 
-<section class="h-[100vh] relative bg-gradient-to-r from-[#1A023E] to-[#1E0445]">
+<section class="h-[100vh] overflow-hidden relative bg-gradient-to-r from-[#1A023E] to-[#1E0445]">
     <!-- Waves Image (Fixed at Bottom) -->
-    <div class="absolute right-0 bottom-0 w-full">
+    <!-- <div class="absolute right-0 bottom-0 w-full">
         <img src={waves} class="w-full" alt="Hero Graphic">
-    </div>
+    </div> -->
 
     <!-- Ellipse Image -->
     <div class="absolute right-0 top-0">
@@ -80,12 +80,12 @@
     </div>
 
     <!-- Hero Image -->
-    <div class="absolute -right-96 top-[50%] transform -translate-y-1/2">
-        <img src={hero1} class="w-[1600px]" alt="Hero Graphic">
+    <div class="absolute  -right-32 top-[60%] transform -translate-y-1/2">
+        <img src={hero1} class="w-[1000px]" alt="Hero Graphic">
     </div>
 
     <!-- 3D Hero2 Model -->
-    <div id="stl-container" class="absolute right-[0.5%] top-[44%] transform -translate-y-1/2"></div>
+    <div id="stl-container" class="absolute -right-[7%] top-[63%] transform -translate-y-1/2"></div>
 
     <div class="px-20  w-[70%] h-full flex flex-col justify-center gap-10 ">
         <h1 class="text-white z-10  text-5xl font-bold tracking-wide leading-loose">
