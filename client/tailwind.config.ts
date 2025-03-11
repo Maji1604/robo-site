@@ -7,7 +7,14 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: {
+				zen: ['"Zen Antique"', 'serif'], 
+				ubuntu:[ '"Ubuntu"', 'serif'],
+				aboreto:['"Aboreto"','serif'],
+				cool: ['"ZCOOL XiaoWei"', 'sans-serif'], 
+			  },
+		}
 	},
 
 	plugins: [typography, forms, containerQueries]

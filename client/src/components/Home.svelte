@@ -3,7 +3,7 @@
     import { onMount } from "svelte";
     import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
     import ellipse from "$lib/images/Ellipse 22.png";
-    import hero1 from "$lib/images/Group 3446 (1).png";
+    import hero1 from "$lib/images/Group 3446 (2) (1).png";
     import waves from "$lib/images/pngwing.com (2) 1.png";
 
     let scene, camera, renderer, mesh;
@@ -58,7 +58,7 @@
                 mesh.rotation.x = Math.sin(angle) * 0 + THREE.MathUtils.degToRad(0);
 
                 // Expand & contract effect (illusion of depth)
-                const scaleFactor = 0.3 + 0.01 * Math.sin(angle); // Expands on one side
+                const scaleFactor = 0.4 + 0.01 * Math.sin(angle); // Expands on one side
                 mesh.scale.set(scaleFactor, scaleFactor, scaleFactor);
             }
 
@@ -68,7 +68,7 @@
     });
 </script>
 
-<section class="h-[100vh] overflow-hidden relative bg-gradient-to-r from-[#1A023E] to-[#1E0445]">
+<section class="h-[90vh] mt-16 overflow-hidden  bg-gradient-to-r from-[#1A023E] to-[#1E0445]">
     <!-- Waves Image (Fixed at Bottom) -->
     <!-- <div class="absolute right-0 bottom-0 w-full">
         <img src={waves} class="w-full" alt="Hero Graphic">
@@ -80,22 +80,22 @@
     </div>
 
     <!-- Hero Image -->
-    <div class="absolute  -right-32 top-[60%] transform -translate-y-1/2">
+    <div class="absolute  -right-32 top-[58%] transform -translate-y-1/2">
         <img src={hero1} class="w-[1000px]" alt="Hero Graphic">
     </div>
 
     <!-- 3D Hero2 Model -->
-    <div id="stl-container" class="absolute -right-[7%] top-[63%] transform -translate-y-1/2"></div>
+    <div id="stl-container" class="absolute -right-[5.5%] top-[50%] transform -translate-y-1/2"></div>
 
     <div class="px-20  w-[70%] h-full flex flex-col justify-center gap-10 ">
-        <h1 class="text-white z-10  text-5xl font-bold tracking-wide leading-loose">
+        <h1 class="text-white font-zen z-10  text-5xl font-medium tracking-wide leading-loose">
             Empowering Minds, <br />
 Transforming Futures with AI Innovation
         </h1>
-        <p class="text-white text-xl leading-loose w-[80%]">
+        <p class="text-white font-ubuntu font-light text-xl leading-loose w-[80%]">
             Empowering young minds with cutting edge AI, STEM, Robotics and Electronics education, enabling them to innovate and lead in a technology-driven world.
         </p>
-        <button class="p-5 font-medium text-xl z-10 w-fit text-white whitespace-nowrap rounded-full bg-gradient-to-l from-[#6504B0] to-[#C961DE]">
+        <button class="px-5 py-3  mt-2 font-ubuntu font-medium text-md z-10 w-fit text-white whitespace-nowrap rounded-full bg-gradient-to-l from-[#6504B0] to-[#C961DE]">
             Unleash Potential
         </button>
     </div>
