@@ -1,240 +1,254 @@
 <script lang="ts">
-    // Previous imports and type definitions remain the same
-    import { spring } from 'svelte/motion';
-    import { onMount, onDestroy } from 'svelte';
-    import { browser } from '$app/environment';
-// import image from "../../public/video/featuredimage.jpg"
-import ellipse from "$lib/images/Ellipse 22.png";
-import hero1 from "$lib/images/Group 3446 (2) (1).png";
-    import waves from "$lib/images/pngwing.com (2) 1.png";
-
- 
-    const cards = [
-        { video: "/video/electronics.mp4" },
-        { video: "/video/electronics.mp4" },
-        { video: "/video/stem.mp4" }
+    // Data for cards and content with custom gradients
+    const content = [
+        {
+            id: "stem",
+            title: "STEM Education",
+            description: "At CreoLeap Technologies, our STEM (Science, Technology, Engineering, and Mathematics) programs are designed to encourage hands-on learning through interactive experiments, real-world projects, and problem-solving activities. We integrate coding, electronics, and engineering principles to build critical thinking, creativity, and analytical skills, preparing students for future careers in technology and innovation.",
+            buttonText: "Discover more",
+            img: "/robo.webp",
+            gradient: "from-sky-400 to-sky-700", // Light blue to dark blue
+            hoverColor: "bg-blue-100"
+        },
+        {
+            id: "robotics",
+            title: "Robotics",
+            description: "Our Robotics programs empower students to design, build, and program intelligent robots, bridging the gap between theoretical knowledge and real-world applications. With AI-powered robotic kits, coding platforms, and interactive challenges, students develop logical thinking, automation skills, and an understanding of robotics in industries such as healthcare, automation, and space exploration.",
+            buttonText: "Start Building",
+            img: "/lego.avif",
+            gradient: "from-red-400 to-red-600", // Light red to mid red
+            hoverColor: "bg-red-100"
+        },
+        {
+            id: "electronics",
+            title: "Electronics",
+            description: "At Creoleap Technologies, we provide a hands-on electronics education experience that blends innovation, automation, and real-world applications. Our programs feature smart electronics kits, interactive learning modules, and AI-powered simulations to help students master circuit design, embedded systems, and IoT technology.",
+            buttonText: "Begin journey",
+            img: "/electronics.webp",
+            gradient: "from-yellow-400 to-yellow-600", // Light yellow to darker yellow
+            hoverColor: "bg-yellow-100"
+        },
+        {
+            id: "ai",
+            title: "AI (Artificial Intelligence)",
+            description: "Our AI Education programs equip students with knowledge of machine learning, data science, and neural networks, helping them understand how artificial intelligence is shaping the future. Through AI-powered learning platforms, coding exercises, and real-world AI applications, students gain skills in automation, predictive analytics, and ethical AI development, preparing them to lead in the AI-driven world.",
+            buttonText: "Explore AI",
+            img: "/ai.webp",
+            gradient: "from-teal-300 to-teal-600", // Light greenish-blue to darker
+            hoverColor: "bg-teal-100"
+        },
+        {
+            id: "iot",
+            title: "IoT (Internet of Things) Education",
+            description: "The Internet of Things (IoT) curriculum introduces students to the power of connected smart devices. Through hands-on projects in home automation, smart cities, and industrial IoT, students learn how to develop and program intelligent systems that sense, analyze, and respond to real-world environments, making technology more efficient and interconnected.",
+            buttonText: "Learn More",
+            img: "/cloud.png",
+            gradient: "from-blue-800 to-gray-900", // Dark blue to bronze
+            hoverColor: "bg-indigo-100"
+        }
     ];
-    // const cards = [
-    //     { video: "$lib/video/electronics.mp4" },
-    //     { video: "$lib//video/electronics.mp4" },
-    //     { video: "$lib/video/stem.mp4" }
-    // ];
 
-    let activeIndex = 0;
-    let isAnimating = false;
-    let accumulatedDelta = 0;
-    let lastCardVisible = false;
-    let readyToScroll = false;
-    const SCROLL_THRESHOLD = 100;
-    let componentMounted = false;
-    
-    $: isFixed = !readyToScroll;
+    // References to DOM elements
+    let tabButtons = {};
+    let navElement: HTMLElement;
+    let componentRoot: HTMLDivElement;
 
-    // All previous functions remain exactly the same
-    function enableScrolling() {
-        if (browser && componentMounted) {
-            readyToScroll = true;
-            document.documentElement.style.scrollBehavior = 'smooth';
-            document.documentElement.style.overflow = 'auto';
-            setTimeout(() => {
-                document.documentElement.style.scrollBehavior = 'auto';
-            }, 100);
-        }
-    }
+    // Active section tracking
+    let activeSection = content[0].id;
+    let autoplayInterval: number | undefined;
+    let isPaused = false;
+    let pauseTimeout: number | undefined;
 
-    function handleScroll(event: WheelEvent) {
-        if (!componentMounted) return;
-        if (readyToScroll && event.deltaY > 0) return;
-        event.preventDefault();
-        if (isAnimating) return;
+    // Function to change active section
+    function setActiveSection(id: string, userInitiated = false) {
+        activeSection = id;
         
-        accumulatedDelta += event.deltaY;
-        
-        if (Math.abs(accumulatedDelta) >= SCROLL_THRESHOLD) {
-            const delta = Math.sign(accumulatedDelta);
-            
-            if (delta > 0 && activeIndex < cards.length - 1) {
-                isAnimating = true;
-                activeIndex++;
-                
-                if (activeIndex === cards.length - 1 && !lastCardVisible) {
-                    lastCardVisible = true;
-                    setTimeout(enableScrolling, 500);
-                }
-                
-                setTimeout(() => {
-                    isAnimating = false;
-                }, 1000);
-            } else if (delta < 0 && activeIndex > 0) {
-                isAnimating = true;
-                activeIndex--;
-                
-                if (readyToScroll) {
-                    readyToScroll = false;
-                    lastCardVisible = false;
-                    if (browser) {
-                        document.documentElement.style.overflow = 'hidden';
-                    }
-                }
-                
-                setTimeout(() => isAnimating = false, 1000);
+        // Scroll the selected tab into view (will happen after rendering)
+        setTimeout(() => {
+            if (tabButtons[id]) {
+                scrollTabIntoView(id);
             }
-            
-            accumulatedDelta = 0;
+        }, 0);
+        
+        // If user clicked, pause autoplay for 10 seconds
+        if (userInitiated) {
+            pauseAutoplay();
         }
     }
 
-    function getTransform(index: number, active: number) {
-        const diff = index - active;
-        const angle = diff * (Math.PI / 3);
-        const radius = 180;
+    // Function to pause autoplay for 10 seconds
+    function pauseAutoplay() {
+        clearTimeout(pauseTimeout);
+        isPaused = true;
         
-        const x = Math.sin(angle) * radius;
-        const z = Math.tan(angle) * radius;
-        const y = Math.abs(Math.tan(angle)) * 100;
-        
-        return `translate(${y}px, ${x}px) translateZ(${y}px) rotateZ(${diff * 45}deg)`;
+        // Resume after 10 seconds
+        pauseTimeout = setTimeout(() => {
+            isPaused = false;
+            startAutoplay();
+        }, 10000);
     }
+
+    // Function to scroll tab into view
+    function scrollTabIntoView(id: string) {
+        const button = tabButtons[id];
+        if (button && navElement) {
+            // Get the button's position relative to the nav container
+            const buttonRect = button.getBoundingClientRect();
+            const navRect = navElement.getBoundingClientRect();
+            
+            // Calculate the scroll position to center the button in view
+            const scrollLeft = button.offsetLeft - (navRect.width / 2) + (buttonRect.width / 2);
+            
+            // Smooth scroll to the button
+            navElement.scrollTo({
+                left: scrollLeft,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    // Auto-rotate function
+    function rotateSection() {
+        if (isPaused) return;
+        
+        const currentIndex = content.findIndex(item => item.id === activeSection);
+        const nextIndex = (currentIndex + 1) % content.length;
+        activeSection = content[nextIndex].id;
+        
+        // Ensure the newly selected tab is visible
+        setTimeout(() => {
+            scrollTabIntoView(content[nextIndex].id);
+        }, 0);
+    }
+
+    // Start autoplay
+    function startAutoplay() {
+        // Clear any existing interval to prevent duplicates
+        clearInterval(autoplayInterval);
+        
+        // Set new interval
+        autoplayInterval = setInterval(() => {
+            if (!isPaused) {
+                rotateSection();
+            }
+        }, 3000);
+    }
+
+    // Initialize autoplay on component mount
+    import { onMount, onDestroy } from 'svelte';
     
     onMount(() => {
-        componentMounted = true;
-        if (browser) {
-            document.documentElement.style.overflow = 'hidden';
+        startAutoplay();
+        // Ensure the initially active tab is visible
+        setTimeout(() => {
+            scrollTabIntoView(activeSection);
+        }, 100);
+        
+        // Add touch and click event listeners to the whole component
+        if (componentRoot) {
+            componentRoot.addEventListener('click', pauseAutoplay);
+            componentRoot.addEventListener('touchstart', pauseAutoplay);
         }
     });
     
     onDestroy(() => {
-        if (browser && componentMounted) {
-            document.documentElement.style.overflow = 'auto';
-            document.documentElement.style.scrollBehavior = 'auto';
+        clearInterval(autoplayInterval);
+        clearTimeout(pauseTimeout);
+        
+        // Clean up event listeners
+        if (componentRoot) {
+            componentRoot.removeEventListener('click', pauseAutoplay);
+            componentRoot.removeEventListener('touchstart', pauseAutoplay);
         }
     });
 </script>
 
-<main class="bg-gradient-to-r from-[#1A023E] to-[#1E0445] flex {isFixed ? 'fixed-section' : ''}"
-    on:wheel={handleScroll}>
+<div bind:this={componentRoot}>
+    <header class="pt-20 z-10 bg-white">
+        <div class="px-8">
+            <div class="flex justify-center items-center py-4">
+                <!-- Navigation -->
+                <nav class="w-full overflow-x-auto" bind:this={navElement}>
+                    <ul class="flex w-full justify-between md:justify-center gap-2 lg:gap-5 border-b">
+                        {#each content as item}
+                            <li class="flex-1 lg:flex-none lg:w-{100 / content.length}% text-center">
+                                <button 
+                                    bind:this={tabButtons[item.id]}
+                                    class="w-full px-8 py-5 text-lg lg:text-xl font-ubuntu font-bold whitespace-nowrap transition-all duration-300 rounded-t-3xl {activeSection === item.id ? `bg-gradient-to-b ${item.gradient} text-white` : `text-gray-600 hover:${item.hoverColor}`}"
+                                    on:click={() => setActiveSection(item.id, true)}
+                                >
+                                    {item.title}
+                                </button>
+                                {#if activeSection === item.id}
+                                    <div class="absolute bottom-0 left-0 w-full h-1 bg-white"></div>
+                                {/if}
+                            </li>
+                        {/each}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-    <div class="absolute right-0 top-0">
-        <img src={ellipse} class="w-[500px]" alt="Decorative Ellipse">
-    </div>
+    <main class="container mx-auto p-4 md:p-8">
+        {#each content as item}
+            {#if activeSection === item.id}
+                <div class="mt-0 animate-fadeIn">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <!-- Image Section -->
+                        <div class="w-full md:w-1/2">
+                            <img
+                                src={item.img}
+                                alt={item.title}
+                                class="w-full h-auto rounded-[40px] shadow-lg"
+                            />
+                        </div>
 
-    <!-- <div class="absolute   top-[48%] transform -translate-y-1/2">
-        <img src={hero1} class="w-[1000px]" alt="Hero Graphic">
-    </div> -->
-
-    <!-- Left Section (Text) -->
-    <section class="h-screen  w-1/2 relative ">
-        <div class="absolute px-16 inset-0 flex items-center justify-center">
-            {#if activeIndex === 0}
-                <div class="text-white flex flex-col gap-10">
-                    <h1 class="text-6xl font-bold leading-normal">
-                        Empowering Minds, Transforming Futures with AI Innovation
-                    </h1>
-                    <p class="text-xl">
-                        Empowering young minds with cutting edge AI, STEM, Robotics and Electronics education, enabling them to innovate and lead in a technology-driven world.
-                    </p>
-                    <div>
-                        <button class="px-7 bg-gradient-to-l from-[#6504B0] to-[#C961DE] py-3 font-medium text-lg rounded-full">
-                            Unleash Potential
-                        </button>
-                    </div>
-                </div>
-            {:else if activeIndex === 1}
-                <div class="text-white flex flex-col gap-10">
-                    <h1 class="text-6xl font-bold leading-normal">
-                        Building Tomorrow's Innovators Through Electronics
-                    </h1>
-                    <p class="text-xl">
-                        Discover the world of electronics through hands-on learning, circuit design, and real-world projects. Shape the future by mastering the fundamentals of electronic engineering and innovation.
-                    </p>
-                    <div>
-                        <button class="px-7 bg-gradient-to-l from-[#6504B0] to-[#C961DE] py-3 font-medium text-lg rounded-full">
-                            Start Creating
-                        </button>
-                    </div>
-                </div>
-            {:else if activeIndex === 2}
-                <div class="text-white flex flex-col gap-10">
-                    <h1 class="text-6xl font-bold leading-normal">
-                        Revolutionizing Education Through STEM and Robotics
-                    </h1>
-                    <p class="text-xl">
-                        Experience the perfect blend of science, technology, engineering, and mathematics through advanced robotics. Build, program, and control robots while developing critical thinking and problem-solving skills.
-                    </p>
-                    <div>
-                        <button class="px-7 bg-gradient-to-l from-[#6504B0] to-[#C961DE] py-3 font-medium text-lg rounded-full">
-                            Begin Journey
-                        </button>
+                        <!-- Content Section -->
+                        <div class="w-full md:w-1/2 flex flex-col gap-6">
+                            <h2 class="text-3xl md:text-5xl font-extrabold font-cool leading-normal bg-gradient-to-r {item.gradient} bg-clip-text text-transparent">
+                                {item.title}
+                            </h2>
+                            <p class="text-lg md:text-xl !leading-loose text-gray-600">
+                                {item.description}
+                            </p>
+                            <button
+                                class="px-7 bg-gradient-to-l {item.gradient} py-3 font-medium font-ubuntu text-lg rounded-full text-white w-fit"
+                                on:click={() => setActiveSection(item.id, true)}
+                            >
+                                {item.buttonText}
+                            </button>
+                        </div>
                     </div>
                 </div>
             {/if}
-        </div>
-    </section>
-
-    <!-- Right Section (Cards) - Keeping original animation logic -->
-    <section class="h-screen w-1/2">
-        <div class="relative h-full w-full">
-            {#each cards as card, i}
-                {@const isActive = i === activeIndex}
-                {@const isPrev = i < activeIndex}
-                {@const isNext = i > activeIndex}
-                
-                <div
-                class="absolute top-1/2 w-full -translate-x-1/2 -translate-y-1/2 transition-all duration-1000 ease-out"
-                style="
-                    transform: 
-                        translate(-0%, -50%)
-                        {getTransform(i, activeIndex)}
-                        scale({isActive ? 1 : 0.6});
-                    opacity: {isActive ? 1 : isPrev || isNext ? 0.01 : 0};
-                    z-index: {isActive ? 10 : 1};
-                "
-            >
-                <div class="h-[500px] w-full rounded-[40px]  shadow-2xl flex ">
-                    <div class="w-full flex items-center justify-center">
-                        <video 
-                            class="h-full relative rounded-[40px] z-10 w-full object-cover"
-                            autoplay
-                            loop
-                            muted
-                            playsinline
-                            src={card.video}
-                        >
-                        Your browser does not support the video tag.
-                        </video>
-                        <!-- <div class="bg-white relative z-10 p-32"> -->
-
-                        <!-- </div> -->
-                    </div>
-        <!-- <img src="/video/giphy.gif" alt="wdec" class="w-full z-20"> -->
-
-                </div>
-            </div>
-            {/each}
-        </div>
-
-    </section>
-  
-</main>
+        {/each}
+    </main>
+</div>
 
 <style>
-    section {
-        margin: 0;
-        overflow: hidden;
-        width: 100%;
+    /* Animation for content transition */
+    .animate-fadeIn {
+        animation: fadeIn 0.5s ease-in-out;
     }
 
-    .fixed-section {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 50;
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
-    .ease-out {
-        transition-timing-function: cubic-bezier(0.33,0.8, 0.33, 0.8);
+    /* Make the scrollbar in the navigation nicer */
+    nav {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(128, 90, 213, 0.6) transparent;
     }
 
+    nav::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    nav::-webkit-scrollbar-thumb {
+        background-color: rgba(128, 90, 213, 0.6);
+        border-radius: 4px;
+    }
 </style>

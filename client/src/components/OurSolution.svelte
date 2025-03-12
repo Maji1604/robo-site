@@ -165,10 +165,10 @@
     <section class="w-1/2 h-screen flex items-center justify-center px-16 sticky top-0">
         <div class="text-gray-800 flex flex-col gap-10">
             {#if activeIndex === 0}
-                <h1 class="text-6xl font-bold leading-normal bg-gradient-to-r from-[#6504B0] to-[#C961DE] bg-clip-text text-transparent">
+                <h1 class="text-7xl font-cool font-bold leading-normal bg-gradient-to-r from-[#6504B0] to-[#C961DE] bg-clip-text text-transparent">
                     STEM Education
                 </h1>
-                <p class="text-xl text-gray-600">
+                <p class="text-xl font-ubuntu !leading-loose text-gray-600">
                     At CreoLeap Technologies, our STEM (Science, Technology, Engineering, and Mathematics) programs are designed to encourage hands-on learning through interactive experiments, real-world projects, and problem-solving activities. We integrate coding, electronics, and engineering principles to build critical thinking, creativity, and analytical skills, preparing students for future careers in technology and innovation.
                 </p>
                 <div>
@@ -180,10 +180,10 @@
                     </button>
                 </div>
             {:else if activeIndex === 1}
-                <h1 class="text-6xl font-bold leading-normal bg-gradient-to-r from-[#6504B0] to-[#C961DE] bg-clip-text text-transparent">
+                <h1 class="text-7xl font-cool font-bold leading-normal bg-gradient-to-r from-[#6504B0] to-[#C961DE] bg-clip-text text-transparent">
                     Robotics 
                 </h1>
-                <p class="text-xl text-gray-600">
+                <p class="text-xl font-ubuntu !leading-loose  text-gray-600">
                     Our Robotics programs empower students to design, build, and program intelligent robots, bridging the gap between theoretical knowledge and real-world applications. With AI-powered robotic kits, coding platforms, and interactive challenges, students develop logical thinking, automation skills, and an understanding of robotics in industries such as healthcare, automation, and space exploration.
                 </p>
                 <div>
@@ -195,10 +195,10 @@
                     </button>
                 </div>
             {:else if activeIndex === 2}
-                <h1 class="text-6xl font-bold leading-normal bg-gradient-to-r from-[#6504B0] to-[#C961DE] bg-clip-text text-transparent">
+                <h1 class="text-7xl font-cool font-bold leading-normal bg-gradient-to-r from-[#6504B0] to-[#C961DE] bg-clip-text text-transparent">
                    Electronics
                 </h1>
-                <p class="text-xl text-gray-600">
+                <p class="text-xl font-ubuntu !leading-loose text-gray-600">
                     At Creoleap Technologies, we provide a hands-on electronics education experience that blends innovation, automation, and real-world applications. Our programs feature smart electronics kits, interactive learning modules, and AI-powered simulations to help students master circuit design, embedded systems, and IoT technology.
                 </p>
                 <div>
@@ -210,10 +210,10 @@
                     </button>
                 </div>
             {:else if activeIndex === 3}
-                <h1 class="text-6xl font-bold leading-normal bg-gradient-to-r from-[#6504B0] to-[#C961DE] bg-clip-text text-transparent">
+                <h1 class="text-7xl font-cool font-bold leading-normal bg-gradient-to-r from-[#6504B0] to-[#C961DE] bg-clip-text text-transparent">
                     AI (Artificial Intelligence) 
                 </h1>
-                <p class="text-xl text-gray-600">
+                <p class="text-xl font-ubuntu !leading-loose text-gray-600">
                     Our AI Education programs equip students with knowledge of machine learning, data science, and neural networks, helping them understand how artificial intelligence is shaping the future. Through AI-powered learning platforms, coding exercises, and real-world AI applications, students gain skills in automation, predictive analytics, and ethical AI development, preparing them to lead in the AI-driven world.
                 </p>
                 <div>
@@ -231,10 +231,10 @@
                     </button>
                 </div>
                 {:else if activeIndex === 4}
-                <h1 class="text-6xl font-bold leading-normal bg-gradient-to-r from-[#6504B0] to-[#C961DE] bg-clip-text text-transparent">
+                <h1 class="text-7xl font-cool font-bold leading-normal bg-gradient-to-r from-[#6504B0] to-[#C961DE] bg-clip-text text-transparent">
                     IoT (Internet of Things) Education
                 </h1>
-                <p class="text-xl text-gray-600">
+                <p class="text-xl font-ubuntu !leading-loose text-gray-600">
                     The Internet of Things (IoT) curriculum introduces students to the power of connected smart devices. Through hands-on projects in home automation, smart cities, and industrial IoT, students learn how to develop and program intelligent systems that sense, analyze, and respond to real-world environments, making technology more efficient and interconnected.
                 </p>
                 <div>

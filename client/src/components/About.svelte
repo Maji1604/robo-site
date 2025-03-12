@@ -13,11 +13,11 @@ import bg from "$lib/images/Group 3447.png"
     <img src={bg} class=" h-[740px] -top-32 right-64  absolute" alt="alt">
     </div>
 <div class="p-10  text-white flex flex-col items-end w-full text-right">
-<h1 class="font-aboreto text-2xl">
+<!-- <h1 class="font-aboreto text-2xl">
 ABOUT US
-</h1>
+</h1> -->
 <p class="font-cool text-6xl py-5 tracking-wider">
-    Innovating the Future with AI and Robotics
+    Leap into the Future with AI and Robotics
 </p>
 <p class="text-2xl py-5 leading-normal font-ubuntu w-3/4 text-right">
     At Creoleap, we are committed to transforming education by integrating STEM principles with hands-on robotics learning. Our mission is to create AI-ready schools, inspire curiosity, and foster creativity in the next generation.

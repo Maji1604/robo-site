@@ -14,12 +14,12 @@ import NavBar from "../components/NavBar.svelte";
 <main class="">
     <NavBar />
     <First />
-
+	<NewHome />
     <!-- <Home /> -->
-<About />
-<!-- <Sample /> -->
-<OurSolution />
-<!-- <NewHome /> -->
+<!-- <About /> -->
+<Sample />
+<!-- <OurSolution /> -->
+
 <Faq />
 <Contact />
 <Footer />
