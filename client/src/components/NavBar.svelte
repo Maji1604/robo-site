@@ -22,19 +22,19 @@
                 </a>
             </li>
             <li>
-                <a href="/about" class="relative group">
+                <a href="/" class="relative group">
                     <span class="font-medium text-white/90 transition-all duration-300 group-hover:text-white text-lg">About</span>
                     <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-[#C961DE] to-[#6504B0] transition-all duration-300 group-hover:w-full"></span>
                 </a>
             </li>
             <li>
-                <a href="/services" class="relative group">
+                <a href="/" class="relative group">
                     <span class="font-medium text-white/90 transition-all duration-300 group-hover:text-white text-lg">Services</span>
                     <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-[#C961DE] to-[#6504B0] transition-all duration-300 group-hover:w-full"></span>
                 </a>
             </li>
             <li>
-                <a href="/contact" class="relative group">
+                <a href="/" class="relative group">
                     <span class="font-medium text-white/90 transition-all duration-300 group-hover:text-white text-lg">Contact</span>
                     <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-[#C961DE] to-[#6504B0] transition-all duration-300 group-hover:w-full"></span>
                 </a>
@@ -66,17 +66,17 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/about" class="block px-6 py-3 hover:bg-gradient-to-r from-[#6504B0]/20 to-[#C961DE]/20 transition-all duration-300">
+                    <a href="/" class="block px-6 py-3 hover:bg-gradient-to-r from-[#6504B0]/20 to-[#C961DE]/20 transition-all duration-300">
                         About
                     </a>
                 </li>
                 <li>
-                    <a href="/services" class="block px-6 py-3 hover:bg-gradient-to-r from-[#6504B0]/20 to-[#C961DE]/20 transition-all duration-300">
+                    <a href="/" class="block px-6 py-3 hover:bg-gradient-to-r from-[#6504B0]/20 to-[#C961DE]/20 transition-all duration-300">
                         Services
                     </a>
                 </li>
                 <li>
-                    <a href="/contact" class="block px-6 py-3 hover:bg-gradient-to-r from-[#6504B0]/20 to-[#C961DE]/20 transition-all duration-300">
+                    <a href="/" class="block px-6 py-3 hover:bg-gradient-to-r from-[#6504B0]/20 to-[#C961DE]/20 transition-all duration-300">
                         Contact
                     </a>
                 </li>
