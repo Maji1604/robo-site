@@ -79,7 +79,7 @@
 
     <div class="space-y-4">
       <p class="text-gray-300">
-        I'm very approachable and would love to speak to you. Feel free to call, send me an email, follow me on social media, or simply complete the enquiry form.
+        Bringing the future of education to your institution! We're just a message away — let's discuss your needs!
       </p>
 
       <!-- Contact Details -->

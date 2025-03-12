@@ -17,7 +17,7 @@ import NavBar from "../components/NavBar.svelte";
 	<NewHome />
     <!-- <Home /> -->
 <!-- <About /> -->
-<Sample />
+<!-- <Sample /> -->
 <!-- <OurSolution /> -->
 
 <Faq />
