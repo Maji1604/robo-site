@@ -10,7 +10,7 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    background: rgba(32, 0, 108, 0.847);
+    background: rgba(1, 21, 70, 0.769);
   }
 
   .hero video {

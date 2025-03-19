@@ -52,11 +52,12 @@
     let tabButtons = {};
     let navElement: HTMLElement;
     let componentRoot: HTMLDivElement;
+    let sectionElement: HTMLElement;
 
     // Active section tracking
     let activeSection = content[0].id;
     let autoplayInterval: number | undefined;
-    let isPaused = false;
+    let isPaused = true; // Initially paused
     let pauseTimeout: number | undefined;
 
     // Function to change active section
@@ -138,27 +139,44 @@
     import { onMount, onDestroy } from 'svelte';
     
     onMount(() => {
-        startAutoplay();
-        // Ensure the initially active tab is visible
-        setTimeout(() => {
-            scrollTabIntoView(activeSection);
-        }, 100);
-        
+        // Set up Intersection Observer to detect when the section is visible
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        // Section is visible, start autoplay
+                        isPaused = false;
+                        startAutoplay();
+                    } else {
+                        // Section is not visible, pause autoplay
+                        isPaused = true;
+                        clearInterval(autoplayInterval);
+                    }
+                });
+            },
+            {
+                threshold: 0.5, // Trigger when 50% of the section is visible
+            }
+        );
+
+        // Observe the section element
+        if (sectionElement) {
+            observer.observe(sectionElement);
+        }
+
+        // Clean up observer on component destroy
+        onDestroy(() => {
+            if (sectionElement) {
+                observer.unobserve(sectionElement);
+            }
+            clearInterval(autoplayInterval);
+            clearTimeout(pauseTimeout);
+        });
+
         // Add touch and click event listeners to the whole component
         if (componentRoot) {
             componentRoot.addEventListener('click', pauseAutoplay);
             componentRoot.addEventListener('touchstart', pauseAutoplay);
-        }
-    });
-    
-    onDestroy(() => {
-        clearInterval(autoplayInterval);
-        clearTimeout(pauseTimeout);
-        
-        // Clean up event listeners
-        if (componentRoot) {
-            componentRoot.removeEventListener('click', pauseAutoplay);
-            componentRoot.removeEventListener('touchstart', pauseAutoplay);
         }
     });
 </script>
@@ -180,7 +198,7 @@
                                     {item.title}
                                 </button>
                                 {#if activeSection === item.id}
-                                    <div class="absolute bottom-0 left-0 w-full h-1 bg-white"></div>
+                                    <!-- <div class="absolute bottom-0 left-0 w-full h-1 bg-white"></div> -->
                                 {/if}
                             </li>
                         {/each}
@@ -190,17 +208,27 @@
         </div>
     </header>
 
-    <main class="container mx-auto p-4 md:p-8">
+    <main class="container mx-auto p-4 md:p-8" bind:this={sectionElement}>
         {#each content as item}
             {#if activeSection === item.id}
                 <div class="mt-0 animate-fadeIn">
                     <div class="flex flex-col md:flex-row gap-8 items-center">
-                        <!-- Image Section -->
-                        <div class="w-full md:w-1/2">
+                        <!-- Image Section with Shimmer Effect -->
+                        <div class="w-full md:w-1/2 relative">
+                            <!-- Shimmer Effect (only visible if image is not loaded) -->
+                            {#if !item.img}
+                                <div class="w-full h-auto rounded-[40px] shadow-lg bg-gray-200 animate-pulse"></div>
+                            {/if}
+
+                            <!-- Image (placed above shimmer if it exists) -->
                             <img
                                 src={item.img}
                                 alt={item.title}
-                                class="w-full h-auto rounded-[40px] shadow-lg"
+                                class="w-full h-auto rounded-[40px] shadow-lg {item.img ? 'opacity-100' : 'opacity-0'}"
+                                on:load={() => {
+                                    const img = document.querySelector(`img[src="${item.img}"]`);
+                                    if (img) img.classList.remove('opacity-0');
+                                }}
                             />
                         </div>
 
@@ -209,7 +237,7 @@
                             <h2 class="text-3xl md:text-5xl font-extrabold font-cool leading-normal bg-gradient-to-r {item.gradient} bg-clip-text text-transparent">
                                 {item.title}
                             </h2>
-                            <p class="text-lg md:text-xl !leading-loose text-gray-600">
+                            <p class="text-lg md:text-xl !leading-normal font-ubuntu text-gray-600">
                                 {item.description}
                             </p>
                             <button
@@ -235,6 +263,16 @@
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Shimmer Effect */
+    .animate-pulse {
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
     }
 
     /* Make the scrollbar in the navigation nicer */

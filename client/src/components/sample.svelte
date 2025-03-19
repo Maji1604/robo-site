@@ -64,7 +64,7 @@
         class="text-4xl md:text-5xl font-bold mb-12 md:mb-16 opacity-0 transition-all duration-700 ease-out inline-block"
         style="transform: translateY(30px);"
       >
-        <span class="bg-gradient-to-r from-pink-400 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent drop-shadow-lg">Our Approach</span>
+        <span class="bg-gradient-to-r from-pink-400 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent drop-shadow-lg">What we Deliver</span>
       </h2>
       
       <div class="flex flex-wrap justify-center gap-6 md:gap-10">
