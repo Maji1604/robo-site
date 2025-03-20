@@ -2,70 +2,85 @@
   import * as Select from "$lib/components/ui/select";
   import chatimg from "$lib/images/chat.png";
   import Icon from "@iconify/svelte";
-  import map from "$lib/images/map.png"
-	import { toast } from "svelte-sonner";
+  import map from "$lib/images/map.png";
+  import { toast } from "svelte-sonner";
+
+  // Track the selected values for the custom select (multiple)
+  let selectedServices: string[] = [];
+
+  // Track form submission state
+  let isSubmitting = false;
+
   // Function to handle form submission
   async function handleSubmit(event: { preventDefault: () => void; target: HTMLFormElement | undefined; }) {
-  event.preventDefault();
-  
-  const formData = new FormData(event.target);
-  const formValues = Object.fromEntries(formData.entries());
-  
-  if (!formValues.name || !formValues.email || !formValues.mobile || !formValues.interestedServices) {
-    alert("Please fill out all required fields.");
-    return;
-  }
-  
-  const payload = {
-    service_id: 'service_d1pb0w7',
-    template_id: 'template_5eda1rn',
-    user_id: 'CdswteZ6BTKu2ZOE3',
-    template_params: {
-      name: formValues.name,
-      email: formValues.email,
-      mobile: formValues.mobile,
-      interestedServices: formValues.interestedServices,
-      message: formValues.message || 'N/A',
-    },
-  };
-  
-  try {
-    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
-    
-    const responseText = await response.text();
-    
-    if (response.ok) {
-     toast.success('Your message has been sent successfully!');
-    } else {
-      console.error('Server response:', responseText);
-      toast.error(`Failed to send email. Status: ${response.status}. Please check console for details.`);
+    event.preventDefault();
+
+    // Disable the form and show loading state
+    isSubmitting = true;
+
+    const formData = new FormData(event.target);
+    const formValues = Object.fromEntries(formData.entries());
+
+    // Validate required fields
+    if (!formValues.name || !formValues.email || !formValues.mobile || selectedServices.length === 0) {
+      toast.error("Please fill out all required fields.");
+      isSubmitting = false;
+      return;
     }
-  } catch (error) {
-    console.error('Error sending email:', error);
-    alert('An error occurred while sending the email.');
+
+    const payload = {
+      service_id: 'service_d1pb0w7',
+      template_id: 'template_5eda1rn',
+      user_id: 'CdswteZ6BTKu2ZOE3',
+      template_params: {
+        name: formValues.name,
+        email: formValues.email,
+        mobile: formValues.mobile,
+        interestedServices: selectedServices.join(", "), // Convert array to string
+        message: formValues.message || 'N/A',
+      },
+    };
+
+    try {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const responseText = await response.text();
+
+      if (response.ok) {
+        toast.success('Your message has been sent successfully!');
+        // Reset the form after successful submission
+        event.target.reset();
+        selectedServices = []; // Reset the selected services
+      } else {
+        console.error('Server response:', responseText);
+        toast.error(`Failed to send email. Status: ${response.status}. Please check console for details.`);
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast.error('An error occurred while sending the email.');
+    } finally {
+      // Re-enable the form
+      isSubmitting = false;
+    }
   }
-}
 
   // Function to open Google Maps in a new tab
   function openGoogleMaps() {
     window.open('https://maps.app.goo.gl/kUjsAFRMcU9PRVkM9?g_st=com.google.maps.preview.copy', '_blank');
   }
-
-  // Track the selected value for the custom select
-  let selectedService: string | null = null;
 </script>
 
 <div class="bg-gradient-to-br from-[#080A25] to-[#0a015a] p-4 sm:p-8 md:p-12 lg:p-20 text-white">
   <!-- Grid Layout -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
     <!-- Left Column: Image -->
-    <div class="flex justify-center  items-center">
+    <div class="flex justify-center items-center">
       <img src={chatimg} alt="Contact illustration" class="w-full" />
     </div>
 
@@ -82,7 +97,8 @@
             id="name"
             name="name"
             required
-            class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-[#1A023E] text-white focus:outline-none focus:ring-2 focus:ring-white"
+            disabled={isSubmitting}
+            class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-[#1A023E] text-white focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50"
           />
         </div>
 
@@ -97,7 +113,8 @@
             pattern="\d*"
             maxlength="10"
             required
-            class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-[#1A023E] text-white focus:outline-none focus:ring-2 focus:ring-white"
+            disabled={isSubmitting}
+            class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-[#1A023E] text-white focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50"
           />
         </div>
 
@@ -109,23 +126,26 @@
             id="email"
             name="email"
             required
-            class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-[#1A023E] text-white focus:outline-none focus:ring-2 focus:ring-white"
+            disabled={isSubmitting}
+            class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-[#1A023E] text-white focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50"
           />
         </div>
 
         <!-- Interested Services Dropdown (Custom Select) -->
         <div>
-          <label for="interestedServices" class="block text-sm font-medium text-gray-300">Interested Services*</label>
-          <Select.Root type="single" bind:value={selectedService} name="interestedServices">
-            <Select.Trigger class="w-full mt-1 px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-[#1A023E] text-white focus:outline-none focus:ring-0">
-              {selectedService || "Select an option"}
+          <label for="interestedServices" class="block text-sm font-medium text-gray-300">
+            Interested Services*
+          </label>
+          <Select.Root type="multiple" bind:value={selectedServices} name="interestedServices" disabled={isSubmitting}>
+            <Select.Trigger class="w-full mt-1 px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-[#1A023E] text-white focus:outline-none focus:ring-0 disabled:opacity-50">
+              {selectedServices.length > 0 ? selectedServices.join(", ") : "Select options"}
             </Select.Trigger>
             <Select.Content class="bg-[#1A023E] border border-gray-600 rounded-md shadow-sm text-white">
-              <Select.Item value="STEM Lab" class="px-3 py-2 hover:bg-[#2A045A]">STEM Lab</Select.Item>
-              <Select.Item value="ATAL Tinkering Lab" class="px-3 py-2 hover:bg-[#2A045A]">ATAL Tinkering Lab</Select.Item>
-              <Select.Item value="Workshops" class="px-3 py-2 hover:bg-[#2A045A]">Workshop</Select.Item>
-              <Select.Item value="Electronic Labs" class="px-3 py-2 hover:bg-[#2A045A]">Electronics Lab</Select.Item>
-              <Select.Item value="Electronic Labs" class="px-3 py-2 hover:bg-[#2A045A]">Robotics Lab</Select.Item>
+              <Select.Item value="Robotics Labs" class="px-8 py-2 hover:bg-[#2A045A]">Robotics Lab</Select.Item>
+              <Select.Item value="STEM Lab" class="px-8 py-2 hover:bg-[#2A045A]">STEM Lab</Select.Item>
+              <Select.Item value="ATAL Tinkering Lab" class="px-8 py-2 hover:bg-[#2A045A]">ATAL Tinkering Lab</Select.Item>
+              <Select.Item value="Electronic Labs" class="px-8 py-2 hover:bg-[#2A045A]">Electronics Lab</Select.Item>
+              <Select.Item value="Workshops" class="px-8 py-2 hover:bg-[#2A045A]">Workshop</Select.Item>
             </Select.Content>
           </Select.Root>
         </div>
@@ -137,7 +157,8 @@
             id="message"
             name="message"
             rows="4"
-            class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-[#1A023E] text-white focus:outline-none focus:ring-2 focus:ring-white"
+            disabled={isSubmitting}
+            class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-[#1A023E] text-white focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50"
           ></textarea>
         </div>
 
@@ -145,9 +166,16 @@
         <div>
           <button
             type="submit"
-            class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-white"
+            disabled={isSubmitting}
+            class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Send message
+            {#if isSubmitting}
+              
+            <span class="flex flex-row gap-5 items-center justify-center">  Sending...
+              <Icon icon="mdi:loading" class="animate-spin mr-2" width="20" height="20" /></span>
+            {:else}
+              Send message
+            {/if}
           </button>
         </div>
       </form>
@@ -180,13 +208,6 @@
           <div class="pt-2">
             <h3 class="text-xl font-semibold text-[#FF6B6B] mb-4">Follow Us</h3>
             <div class="flex space-x-4">
-              <!-- <a
-                href="/"
-                class="text-gray-300 hover:text-[#FF6B6B] transition-colors"
-                aria-label="Twitter"
-              >
-                <Icon icon="mdi:twitter" width="24" height="24" />
-              </a> -->
               <a
                 href="https://www.linkedin.com/company/creoleap/?viewAsMember=true"
                 class="text-gray-300 hover:text-[#FF6B6B] transition-colors"
@@ -216,7 +237,7 @@
           <div class="pt-6">
             <h3 class="text-xl font-semibold mb-4">Visit Us</h3>
             <div class="mt-4 relative">
-              <div class="w-full h-64  rounded-lg overflow-hidden cursor-pointer" on:click={openGoogleMaps}>
+              <div class="w-full h-64 rounded-lg overflow-hidden cursor-pointer" on:click={openGoogleMaps}>
                 <!-- Location Icon Overlay -->
                 <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-30 transition-all">
                   <div class="text-center">
@@ -238,8 +259,9 @@
     </div>
   </div>
 </div>
+
 <style>
   [role="option"][data-state="checked"]::after {
-      content: none !important;
+    content: none !important;
   }
 </style>

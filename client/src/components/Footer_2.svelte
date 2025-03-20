@@ -35,7 +35,7 @@
             text-transparent bg-clip-text">Resources</h3>
             <ul class="space-y-2 text-gray-400">
                 <!-- <li><a href="/blog" class="hover:text-blue-400">Blog</a></li> -->
-                <li><a href="/" class="hover:text-blue-400">FAQ</a></li>
+                <!-- <li><a href="/" class="hover:text-blue-400">FAQ</a></li> -->
                 <li><a href="/" class="hover:text-blue-400">Terms of Service</a></li>
                 <li><a href="/" class="hover:text-blue-400">Privacy Policy</a></li>
             </ul>
@@ -45,9 +45,11 @@
         <div >
             <h3 class="font-bold text-lg mb-4  bg-gradient-to-tl from-[#6504B0] to-[#ef9eff]
             text-transparent bg-clip-text">Contact Us</h3>
+          <h1 class="text-gray-400 mb-2 font-medium">CREOLEAP TECHNOLOGIES PRIVATE LIMITED</h1>
+
             <p class="text-gray-400">Email: <a href="mailto:info@creoleap.com" class="hover:text-blue-400">info@creoleap.com</a></p>
             <!-- <p>Phone: <a href="tel:+123456789" class="hover:text-blue-400">+123 456 789</a></p> -->
-            <p class="text-gray-400">Location: S.T. Hindu College Road, Beach Road,<br /> Nagercoil - 629002</p>
+            <p class="text-gray-400">Location: 13/6, S.T. Hindu College Road, Beach Road,<br /> Nagercoil - 629002</p>
         </div>
 
         <!-- Social Media -->

@@ -85,7 +85,7 @@
         </a>
       </li>
       <li>
-        <a href="/" class="relative group">
+        <a href="/#solution" class="relative group">
           <span class="font-medium text-white/90 transition-all duration-300 group-hover:text-white text-lg">Solutions</span>
           <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-[#C961DE] to-[#6504B0] transition-all duration-300 group-hover:w-full"></span>
         </a>
@@ -128,7 +128,7 @@
           </a>
         </li>
         <li>
-          <a href="/" class="block px-6 py-3 hover:bg-gradient-to-r from-[#6504B0]/20 to-[#C961DE]/20 transition-all duration-300">
+          <a href="/#solution" class="block px-6 py-3 hover:bg-gradient-to-r from-[#6504B0]/20 to-[#C961DE]/20 transition-all duration-300">
             Solutions
           </a>
         </li>

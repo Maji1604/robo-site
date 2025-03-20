@@ -11,15 +11,19 @@ import NavBar from "../components/NavBar.svelte";
 	import OurSolution from "../components/OurSolution.svelte";
 	import Sample from "../components/sample.svelte";
 	import NewHome from "../components/Solution.svelte";
-	import { Toaster } from 'svelte-sonner';
+	import { toast, Toaster } from 'svelte-sonner';
 </script>
 
 <main class="">
-	<Toaster />
+	<Toaster position="top-center" />
     <First />
-	<NewHome />
+	<About />
+
+	<div id="solution">
+		<NewHome />
+	</div>
     <!-- <Home /> -->
-<!-- <About /> -->
+
 <!-- <Sample /> -->
 <!-- <OurSolution /> -->
 
