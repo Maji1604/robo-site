@@ -86,7 +86,7 @@
 
     <!-- Middle Column: Contact Form -->
     <div class="space-y-6">
-      <form class="space-y-6 pr-0 md:pr-8 lg:pr-20" on:submit={handleSubmit}>
+      <form class="space-y-6 pr-0 md:pr-8 lg:pr-20" onsubmit={handleSubmit}>
         <h2 class="text-2xl sm:text-3xl font-bold">Book a Quick consultation with Us</h2>
 
         <!-- Name Field -->
@@ -196,7 +196,9 @@
             <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
             </svg>
-            <span>+91 9047690808</span>
+            <a href="tel:+919363208701" class="text-gray-300 hover:text-blue-500 transition-colors">
+              +91 9363208701
+            </a>
           </p>
           <p class="text-gray-300 flex items-center">
             <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -237,7 +239,7 @@
           <div class="pt-6">
             <h3 class="text-xl font-semibold mb-4">Visit Us</h3>
             <div class="mt-4 relative">
-              <div class="w-full h-64 rounded-lg overflow-hidden cursor-pointer" on:click={openGoogleMaps}>
+              <div class="w-full h-64 rounded-lg overflow-hidden cursor-pointer" onclick={openGoogleMaps}>
                 <!-- Location Icon Overlay -->
                 <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-30 transition-all">
                   <div class="text-center">

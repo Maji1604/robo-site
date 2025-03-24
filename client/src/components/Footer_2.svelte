@@ -42,14 +42,40 @@
         </div>
 
         <!-- Contact Details -->
-        <div >
-            <h3 class="font-bold text-lg mb-4  bg-gradient-to-tl from-[#6504B0] to-[#ef9eff]
-            text-transparent bg-clip-text">Contact Us</h3>
-          <h1 class="text-gray-400 mb-2 font-medium">CREOLEAP TECHNOLOGIES PRIVATE LIMITED</h1>
-
-            <p class="text-gray-400">Email: <a href="mailto:info@creoleap.com" class="hover:text-blue-400">info@creoleap.com</a></p>
-            <!-- <p>Phone: <a href="tel:+123456789" class="hover:text-blue-400">+123 456 789</a></p> -->
-            <p class="text-gray-400">Location: 13/6, S.T. Hindu College Road, Beach Road,<br /> Nagercoil - 629002</p>
+        <div class="max-w-md space-y-4">
+          <h3 class="font-bold text-lg mb-2 bg-gradient-to-tl from-[#6504B0] to-[#ef9eff] text-transparent bg-clip-text">
+            Contact Us
+          </h3>
+          
+          <h1 class="text-gray-400 mb-4 font-medium">
+            CREOLEAP TECHNOLOGIES PRIVATE LIMITED
+          </h1>
+          
+          <div class="space-y-2">
+            <!-- Phone -->
+            <div class="flex items-start gap-3">
+              <Icon icon="mdi:phone" class="text-[#ef9eff94] mt-0 flex-shrink-0" width="20" />
+              <a href="tel:+919363208701" class="text-gray-400 hover:text-blue-500 transition-colors">
+                +91 9363208701
+              </a>
+            </div>
+            
+            <!-- Email -->
+            <div class="flex items-start gap-3">
+              <Icon icon="mdi:email-outline" class="text-[#ef9eff94] mt-0 flex-shrink-0" width="20" />
+              <a href="mailto:info@creoleap.com" class="text-gray-400 hover:text-blue-500 transition-colors">
+                info@creoleap.com
+              </a>
+            </div>
+            
+            <!-- Location -->
+            <div class="flex items-start gap-3">
+              <Icon icon="mdi:map-marker-outline" class="text-[#ef9eff94] mt-0.5 flex-shrink-0" width="20" />
+              <p class="text-gray-400">
+                13/6, S.T. Hindu College Road, Beach Road,<br />Nagercoil - 629002
+              </p>
+            </div>
+          </div>
         </div>
 
         <!-- Social Media -->
