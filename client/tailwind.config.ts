@@ -67,7 +67,8 @@ const config: Config = {
 				sm: "calc(var(--radius) - 4px)"
 			},
 			fontFamily: {
-				sans: [...fontFamily.sans]
+				sans: [...fontFamily.sans],
+				ubuntu: ['Ubuntu', 'sans-serif'],
 			},
 			keyframes: {
 				"accordion-down": {

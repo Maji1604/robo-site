@@ -99,7 +99,7 @@
         {#if visible}
         <div class="text-center mb-20" in:fly={{ y: 50, duration: 800, delay: 200 }}>
   
-            <p class="mt-0 text-2xl text-gray-700 max-w-8xl mx-auto leading-relaxed">
+            <p class="mt-0 lg:text-2xl md:text-xl text-lg text-gray-700 max-w-8xl mx-auto leading-relaxed">
                 At Creoleap Technologies, we are transforming education by integrating AI, Robotics, and STEM learning into a dynamic, NEP-aligned curriculum based on the 
                    CCC Method. Our mission is to empower students and educators with innovative tools, fostering a culture of inquiry-driven, hands-on learning that prepares young minds for the future.
             </p>

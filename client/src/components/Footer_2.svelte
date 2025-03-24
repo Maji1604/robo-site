@@ -11,33 +11,36 @@
   </div>
 
   <!-- Middle Section with Links -->
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
-    <!-- Quick Links -->
-    <div>
-      <h3 class="font-bold text-lg mb-4 bg-gradient-to-tl from-[#6504B0] to-[#ef9eff] text-transparent bg-clip-text">
-        Quick Links
-      </h3>
-      <ul class="space-y-2 text-gray-400">
-        <li><a href="/about_us" class="hover:text-blue-400">About Us</a></li>
-        <li><a href="/" class="hover:text-blue-400">Solutions</a></li>
-        <li><a href="/#contact" class="hover:text-blue-400">Contact Us</a></li>
-        <li><a href="/" class="hover:text-blue-400">Careers</a></li>
-      </ul>
-    </div>
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <!-- Nested Grid for Quick Links and Resources -->
+    <div class="grid grid-cols-2 gap-8 text-center md:text-left md:col-span-2">
+      <!-- Quick Links -->
+      <div>
+        <h3 class="font-bold text-lg mb-4 bg-gradient-to-tl from-[#6504B0] to-[#ef9eff] text-transparent bg-clip-text">
+          Quick Links
+        </h3>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="/about_us" class="hover:text-blue-400">About Us</a></li>
+          <li><a href="/" class="hover:text-blue-400">Solutions</a></li>
+          <li><a href="/#contact" class="hover:text-blue-400">Contact Us</a></li>
+          <li><a href="/" class="hover:text-blue-400">Careers</a></li>
+        </ul>
+      </div>
 
-    <!-- Resources -->
-    <div>
-      <h3 class="font-bold text-lg mb-4 bg-gradient-to-tl from-[#6504B0] to-[#ef9eff] text-transparent bg-clip-text">
-        Resources
-      </h3>
-      <ul class="space-y-2 text-gray-400">
-        <li><a href="/" class="hover:text-blue-400">Terms of Service</a></li>
-        <li><a href="/" class="hover:text-blue-400">Privacy Policy</a></li>
-      </ul>
+      <!-- Resources -->
+      <div>
+        <h3 class="font-bold text-lg mb-4 bg-gradient-to-tl from-[#6504B0] to-[#ef9eff] text-transparent bg-clip-text">
+          Resources
+        </h3>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="/" class="hover:text-blue-400">Terms of Service</a></li>
+          <li><a href="/" class="hover:text-blue-400">Privacy Policy</a></li>
+        </ul>
+      </div>
     </div>
 
     <!-- Contact Details -->
-    <div class="max-w-md mx-auto space-y-4">
+    <div class="max-w-md mx-auto space-y-4 text-center md:text-left">
       <h3 class="font-bold text-lg mb-2 bg-gradient-to-tl from-[#6504B0] to-[#ef9eff] text-transparent bg-clip-text">
         Contact Us
       </h3>
@@ -70,7 +73,7 @@
     </div>
 
     <!-- Social Media -->
-    <div>
+    <div class="text-center md:text-left">
       <h3 class="font-bold text-lg mb-4 bg-gradient-to-tl from-[#6504B0] to-[#ef9eff] text-transparent bg-clip-text">
         Follow Us
       </h3>
