@@ -366,11 +366,11 @@
       {#if visibleSections.hero}
         <div class="text-center text-white" in:fly={{ y: 50, duration: 800 }}>
           <h1
-            class="text-5xl md:text-6xl font-bold tracking-normal mb-6 font-heading drop-shadow-lg"
+            class="lg:text-5xl  md:text-3xl text-2xl font-bold tracking-normal mb-6 font-heading drop-shadow-lg"
           >
             Join Creoleap to Drive Tech Innovation
           </h1>
-          <p class="text-xl max-w-3xl mx-auto mb-8 drop-shadow-md">
+          <p class="md:text-xl text-lg max-w-3xl mx-auto mb-8 drop-shadow-md">
             Explore exciting opportunities to deliver cutting-edge tech solutions to
             clients worldwide.
           </p>
@@ -386,12 +386,12 @@
   </section>
 
   <!-- Why Creoleap? -->
-  <section id="why" class="py-24 bg-gray-50">
+  <section id="why" class="lg:py-24 md:py-16 py-10 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       {#if visibleSections.why}
         <div class="text-center mb-16 W" in:fade>
           <h2
-            class="text-4xl font-bold mb-4 font-heading relative inline-block pb-2"
+            class="lg:text-4xl text-2xl font-bold mb-4 font-heading relative inline-block pb-2"
           >
             Why Creoleap?
             <span
@@ -399,7 +399,7 @@
               rounded-full"
             ></span>
           </h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p class="text-xl !font-ubuntu text-gray-600 max-w-3xl mx-auto">
             Discover what makes Creoleap Technologies a great place to grow your
             career in technology and innovation.
           </p>
@@ -421,7 +421,7 @@
               <h3 class="text-xl font-semibold text-gray-900 mb-2 font-heading">
                 {reason.title}
               </h3>
-              <p class="text-gray-600 mb-4">{reason.desc}</p>
+              <p class="text-gray-600 mb-4 !font-ubuntu">{reason.desc}</p>
             </div>
           {/each}
         </div>
@@ -430,24 +430,24 @@
   </section>
 
   <!-- Mission Section with Mission Statement and CCC Cards -->
-  <section id="mission" class="py-24">
+  <section id="mission" class="lg:py-24 md:py-16 py-10">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       {#if visibleSections.mission}
-        <div class="text-center mb-16" in:fade>
+        <div class="text-center lg:mb-16 md:mb-10 mb-2" in:fade>
           <h2
-            class="text-4xl font-bold mb-4 font-heading relative inline-block pb-2"
+            class="lg:text-4xl text-2xl font-bold mb-4 font-heading relative inline-block pb-2"
           >
             Our Mission
             <!-- Gradient Underline -->
             <span
-              class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#6504b0] to-[#008080] rounded-full"
+              class="absolute  bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#6504b0] to-[#008080] rounded-full"
             ></span>
           </h2>
         </div>
 
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <p
-            class="text-xl text-gray-600 max-w-3xl mx-auto relative flex text-center items-center justify-center gap-3"
+            class="text-xl !font-ubuntu text-gray-600 max-w-3xl mx-auto relative flex text-center items-center justify-center gap-3"
           >
             We equip educators and students with cutting-edge tools and experiential
             learning, bridging theory and practice to drive innovation and real-world
@@ -455,7 +455,7 @@
           </p>
           <!-- Right Side: CCC Cards -->
           <div
-            class="grid grid-cols-1 sm:grid-cols-3 gap-6"
+            class="grid grid-cols-1 sm:grid-cols-3 lg:gap-6 gap-3 !font-ubuntu"
             in:fly={{ x: 50, duration: 800, delay: 200 }}
           >
             <!-- Curiosity Card -->
@@ -467,7 +467,7 @@
               >
                 <Icon icon="mdi:brain" class="text-[#FF4500]" width="40" height="40" />
               </div>
-              <p class="text-center font-bold text-[#0a015a]">Curiosity</p>
+              <p class="text-center !font-ubuntu font-bold text-[#0a015a]">Curiosity</p>
               <div class="w-10 h-1 bg-[#FF4500] mt-3 rounded-full"></div>
             </div>
 
@@ -485,7 +485,7 @@
                   height="40"
                 />
               </div>
-              <p class="text-center font-bold text-[#0a015a]">Creativity</p>
+              <p class="text-center font-bold text-[#0a015a] !font-ubuntu">Creativity</p>
               <div class="w-10 h-1 bg-[#008080] mt-3 rounded-full"></div>
             </div>
 
@@ -503,7 +503,7 @@
                   height="40"
                 />
               </div>
-              <p class="text-center font-bold text-[#0a015a]">Critical Thinking</p>
+              <p class="text-center font-bold text-[#0a015a] !font-ubuntu">Critical Thinking</p>
               <div class="w-10 h-1 bg-[#483D8B] mt-3 rounded-full"></div>
             </div>
           </div>
@@ -513,14 +513,14 @@
   </section>
 
   <!-- Combined Open Positions and CTA Section -->
-  <div class=" mx-auto px-6 lg:px-20 py-24">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+  <div class=" mx-auto px-6 lg:px-20 lg:py-24 md:py-16 py-0">
+    <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 md:gap-8 gap-6">
       <!-- Open Positions -->
       <section id="positions" class="rounded-2xl h-fit p-8">
         {#if visibleSections.positions}
-          <div class="text-center mb-12" in:fade>
+          <div class="text-center lg:mb-12 md:mb-8 mb-5" in:fade>
             <h2
-              class="text-4xl font-bold mb-4 font-heading inline-block relative pb-2"
+              class="lg:text-4xl text-2xl font-bold mb-4 font-heading inline-block relative pb-2"
             >
               Open Positions
               <span
@@ -656,11 +656,11 @@
 
             <div class="relative z-10 text-center">
               <h2
-                class="text-4xl font-bold text-gray-900 mb-4 font-heading"
+                class="lg:text-4xl text-2xl font-bold text-gray-900 mb-4 font-heading"
               >
                 Join Our Creoleap Team
               </h2>
-              <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+              <p class="lg:text-xl !font-ubuntu text-base text-gray-600 max-w-3xl mx-auto mb-8">
                 Not seeing the perfect role? We're always looking for exceptional
                 talent to join our mission.
               </p>
@@ -668,11 +668,11 @@
               <!-- Updated Form -->
               <form
                 on:submit|preventDefault={handleCTASubmit}
-                class="space-y-6"
+                class="space-y-6 !font-ubuntu"
                 enctype="multipart/form-data"
               >
                 <!-- First Name and Last Name -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 !font-ubuntu sm:grid-cols-2 gap-4">
                   <div>
                     <label
                       for="firstName"
@@ -692,7 +692,7 @@
                   <div>
                     <label
                       for="lastName"
-                      class="block text-sm font-medium text-gray-700"
+                      class="block text-sm  !font-ubuntu font-medium text-gray-700"
                     >
                       Last Name*
                     </label>
@@ -708,7 +708,7 @@
                 </div>
 
                 <!-- Mobile Number and Email -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 !font-ubuntu sm:grid-cols-2 gap-4">
                   <div>
                     <label
                       for="mobile"
@@ -731,7 +731,7 @@
                   <div>
                     <label
                       for="email"
-                      class="block text-sm font-medium text-gray-700"
+                      class="block text-sm !font-ubuntu font-medium text-gray-700"
                     >
                       Email*
                     </label>
@@ -750,7 +750,7 @@
                 <div>
                   <label
                     for="education"
-                    class="block text-sm font-medium text-gray-700"
+                    class="block !font-ubuntu text-sm font-medium text-gray-700"
                   >
                     Educational Qualification*
                   </label>
@@ -759,7 +759,7 @@
                     name="education"
                     required
                     disabled={isCTASubmitting}
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
+                    class="mt-1 !font-ubuntu block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
                   >
                     <option value="" disabled selected>
                       Select your qualification
@@ -796,7 +796,7 @@
                 <div>
                   <label
                     for="message"
-                    class="block text-sm font-medium text-gray-700"
+                    class="block !font-ubuntu text-sm font-medium text-gray-700"
                   >
                     Message (Optional)
                   </label>
@@ -814,7 +814,7 @@
                   <button
                     type="submit"
                     disabled={isCTASubmitting}
-                    class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50 disabled:cursor-not-allowed"
+                    class="w-full !font-ubuntu bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {#if isCTASubmitting}
                       <span
@@ -836,8 +836,8 @@
               </form>
 
               <!-- Social Links -->
-              <div class="mt-10">
-                <p class="text-gray-600 mb-4">Follow our journey</p>
+              <div class="mt-10 !font-ubuntu">
+                <p class="text-gray-600 !font-ubuntu mb-4">Follow our journey</p>
                 <div class="flex justify-center gap-6">
                   {#each [
                     { icon: "LinkedIn", svg: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" }

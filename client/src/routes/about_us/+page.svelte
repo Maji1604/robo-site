@@ -4,6 +4,7 @@
     import { onMount } from 'svelte';
     import { fly, fade, scale } from 'svelte/transition';
     import { spring } from 'svelte/motion';
+	import Innovation from "../../components/innovation.svelte";
 
     // Animation control
     let visible = false;
@@ -79,7 +80,7 @@
 
 <svelte:window on:mousemove={handleMouseMove} />
 
-<section id="about" class="flex justify-center items-center relative overflow-hidden bg-gradient-to-br from-white to-[#f8f6ff] text-[#080A25] py-24 mt-20">
+<section id="about" class="flex justify-center items-center relative overflow-hidden bg-gradient-to-br from-white to-[#f8f6ff] text-[#080A25] lg:py-24 md:py-16 py-10  lg:mt-20 mt-10">
     <!-- Animated background elements -->
     
     <div class="absolute inset-0 overflow-hidden">
@@ -91,13 +92,13 @@
     </div>
     
     <div class=" lg:w-[90%]  px-6 lg:px-16 relative z-10">
-        <div class="text-center mb-16">
-            <h3 class="font-ubuntu text-5xl font-bold bg-gradient-to-tr from-[#101447] to-[#1201a9] text-transparent bg-clip-text inline-block pb-2">About Creoleap</h3>
-            <div class="w-24 h-1 bg-gradient-to-r from-[#080A25] to-[#0a015a] mx-auto mt-4 rounded-full"></div>
+        <div class="text-center lg:mb-16 mb-5">
+            <h3 class="!font-ubuntu lg:text-5xl text-3xl font-bold bg-gradient-to-tr from-[#101447] to-[#1201a9] text-transparent bg-clip-text inline-block pb-2">About Creoleap</h3>
+            <div class="w-24 h-1 bg-gradient-to-r from-[#080A25] to-[#0a015a] mx-auto lg:mt-4 mt-0 rounded-full"></div>
         </div>
         <!-- Title and Intro -->
         {#if visible}
-        <div class="text-center mb-20" in:fly={{ y: 50, duration: 800, delay: 200 }}>
+        <div class="text-center lg:mb-20 md:mb-16 mb-10" in:fly={{ y: 50, duration: 800, delay: 200 }}>
   
             <p class="mt-0 lg:text-2xl md:text-xl text-lg text-gray-700 max-w-8xl mx-auto leading-relaxed">
                 At Creoleap Technologies, we are transforming education by integrating AI, Robotics, and STEM learning into a dynamic, NEP-aligned curriculum based on the 
@@ -107,7 +108,7 @@
         {/if}
   
         <!-- Vision & Mission -->
-        <div id="vision-mission" class="grid  grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+        <div id="vision-mission" class="grid  !font-ubuntu grid-cols-1 lg:grid-cols-2 gap-16 items-center lg:mb-24 md:mb-16 mb-5">
             {#if visibleSections.vision}
             <div in:fly={{ x: -50, duration: 800, delay: 300 }}>
                 <div class="flex flex-col gap-5 ">
@@ -118,7 +119,7 @@
                         </div>
                         <span class="bg-gradient-to-r from-[#080A25] to-[#0a015a] bg-clip-text text-transparent">Our Vision</span>
                     </h3>
-                    <p class="text-lg text-gray-700 mb-6 leading-relaxed pl-4 border-l-2 border-purple-200">
+                    <p class="text-lg !font-ubuntu text-gray-700 mb-6 leading-relaxed pl-4 border-l-2 border-purple-200">
                         Creoleap Technologies envisions a future where students "Leap into the AI Future" through hands-on learning in AI, Robotics, and STEM, fostering curiosity, creativity, and critical thinking.
                     </p>
                    </div>
@@ -130,7 +131,7 @@
                         </div>
                         <span class="bg-gradient-to-r from-[#0a015a] to-[#4a30a0] bg-clip-text text-transparent">Our Mission</span>
                     </h3>
-                    <p class="text-lg text-gray-700 leading-relaxed pl-4 border-l-2 border-purple-200">
+                    <p class="text-lg !font-ubuntu text-gray-700 leading-relaxed pl-4 border-l-2 border-purple-200">
                     We equip educators and students with cutting-edge tools and experiential learning, bridging theory and practice to drive innovation and real-world problem-solving.
                    </div>
                 </div>
@@ -153,7 +154,7 @@
                         <div class="w-16 h-16 rounded-full bg-[#ffefe9] flex items-center justify-center mb-4 transition-transform duration-500 hover:scale-110">
                             <Icon icon="mdi:brain" class="text-[#FF4500]" width="40" height="40" />
                         </div>
-                        <p class="text-center font-bold text-[#0a015a]">Curiosity</p>
+                        <p class="text-center !font-ubuntu font-bold text-[#0a015a]">Curiosity</p>
                         <div class="w-10 h-1 bg-[#FF4500] mt-3 rounded-full"></div>
                     </div>
                     
@@ -162,7 +163,7 @@
                         <div class="w-16 h-16 rounded-full bg-[#e6f7f7] flex items-center justify-center mb-4 transition-transform duration-500 hover:scale-110">
                             <Icon icon="mdi:lightbulb-on-outline" class="text-[#008080]" width="40" height="40" />
                         </div>
-                        <p class="text-center font-bold text-[#0a015a]">Creativity</p>
+                        <p class="text-center !font-ubuntu font-bold text-[#0a015a]">Creativity</p>
                         <div class="w-10 h-1 bg-[#008080] mt-3 rounded-full"></div>
                     </div>
                     
@@ -171,7 +172,7 @@
                         <div class="w-16 h-16 rounded-full bg-[#eeecf7] flex items-center justify-center mb-4 transition-transform duration-500 hover:scale-110">
                             <Icon icon="mdi:head-cog-outline" class="text-[#483D8B]" width="40" height="40" />
                         </div>
-                        <p class="text-center font-bold text-[#0a015a]">Critical Thinking</p>
+                        <p class="text-center !font-ubuntu font-bold text-[#0a015a]">Critical Thinking</p>
                         <div class="w-10 h-1 bg-[#483D8B] mt-3 rounded-full"></div>
                     </div>
                 </div>
@@ -183,12 +184,12 @@
         <div id="reasons" class="mt-24 mb-24">
             {#if visibleSections.cards}
             <div in:fly={{ y: 50, duration: 800 }}>
-                <div class="text-center mb-16">
-                    <h3 class="font-ubuntu text-5xl font-bold bg-gradient-to-tr from-[#101447] to-[#1201a9] text-transparent bg-clip-text inline-block pb-2">Accelerating the Future with Creoleap</h3>
-                    <div class="w-24 h-1 bg-gradient-to-r from-[#080A25] to-[#0a015a] mx-auto mt-4 rounded-full"></div>
+                <div class="text-center lg:mb-16 md:mb-12 mb-0">
+                    <h3 class="lg:text-5xl md:text-3xl text-2xl font-bold bg-gradient-to-tr from-[#101447] to-[#1201a9] text-transparent bg-clip-text inline-block pb-2">Accelerating the Future with Creoleap</h3>
+                    <div class="w-24 h-1 bg-gradient-to-r from-[#080A25] to-[#0a015a] mx-auto lg:mt-4 mt-0 rounded-full"></div>
                 </div>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 md:gap-6 gap-0">
                     {#each [
                         {icon: "mdi:book-education-outline", color: "#6504b0", title: "NEP-Aligned Curriculum", desc: "Our programs are designed to meet the guidelines of the National Education Policy, ensuring future-ready education."},
                         {icon: "mdi:atom", color: "#00BFFF", title: "CCC Methodology", desc: "We integrate Curiosity, Creativity, and Critical Thinking into every learning experience."},
@@ -201,7 +202,7 @@
                         {icon: "mdi:headset", color: "#2E8B57", title: "Dedicated Support & Consultation", desc: "We provide ongoing guidance to ensure seamless implementation of our solutions."}
                     ] as feature, i (i)}
                         <div class="group relative z-10 overflow-hidden" in:fly={{ y: 50, duration: 500, delay: 100 + i * 100 }}>
-                            <div class="bg-white/90 backdrop-blur-xl p-8 rounded-xl shadow-xl border border-transparent transition-all duration-500 group-hover:border-[{feature.color}]/50 group-hover:shadow-[0_40px_40px_rgba(0,0,0,0)] h-full relative z-10 group-hover:translate-y-[-25px]">
+                            <div class="bg-white/90 backdrop-blur-xl lg:p-8 md:p-6 p-4 rounded-xl shadow-xl border border-transparent transition-all duration-500 group-hover:border-[{feature.color}]/50 group-hover:shadow-[0_40px_40px_rgba(0,0,0,0)] h-full relative z-10 group-hover:translate-y-[-25px]">
                                 <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[{feature.color}]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
                                 <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-[{feature.color}]/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
                                 
@@ -209,9 +210,9 @@
                                     <div class="w-14 h-14 rounded-lg bg-[{feature.color}]/40 flex items-center justify-center mr-4 transition-all duration-500 group-hover:bg-[{feature.color}]/40">
                                         <Icon icon={feature.icon} class="text-[{feature.color}]" width="28" height="28" />
                                     </div>
-                                    <h4 class="text-xl font-bold text-[#0a015a] group-hover:text-[{feature.color}] transition-colors duration-300">{feature.title}</h4>
+                                    <h4 class="text-xl !font-ubuntu font-bold text-[#0a015a] group-hover:text-[{feature.color}] transition-colors duration-300">{feature.title}</h4>
                                 </div>
-                                <p class="text-gray-700 leading-relaxed pl-4 border-l-2 border-[{feature.color}]/30 relative z-10">{feature.desc}</p>
+                                <p class="text-gray-700 !font-ubuntu leading-relaxed pl-4 border-l-2 border-[{feature.color}]/30 relative z-10">{feature.desc}</p>
                             </div>
                         </div>
                     {/each}
@@ -221,84 +222,18 @@
         </div>
   
         <!-- Inspiring Innovation -->
-        <div id="innovation" class="mt-24">
-            {#if visibleSections.innovation}
-            <div in:fly={{ y: 50, duration: 800 }}>
-                <div class="text-center mb-16">
-                    <h3 class="text-5xl font-bold bg-gradient-to-tr from-[#101447] to-[#1201a9] text-transparent bg-clip-text inline-block pb-2">Inspiring Innovation & Critical Thinking</h3>
-                    <div class="w-24 h-1 bg-gradient-to-br from-[#101447] to-[#1201a9] mx-auto mt-4 rounded-full"></div>
-                </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div class="order-2 md:order-1 relative" in:fly={{ x: -50, duration: 800, delay: 200 }}>
-                        <div class="absolute -bottom-16 -left-16 w-80  h-80 bg-gradient-to-br from-[#6504b0]/20 to-transparent rounded-full"></div>
-                        <div class="absolute -top-10 -right-10 w-40  h-40 bg-gradient-to-br from-[#FF4500]/20 to-transparent rounded-full"></div>
-                        
-                        <div class="rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-2 border-white relative z-10 transform transition-all duration-500 hover:scale-[1.02]"
-                             style="transform: perspective(1000px) rotateY({mouseX * 40}deg) rotateX({-mouseY * 40}deg);">
-                            <img 
-                                src="/skills.png"
-                                alt="Innovation Hub"
-                                class="w-full"
-                            />
-                            
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-80 transition-opacity duration-500 flex items-end">
-                                <div class="p-6 text-white">
-                                    <h4 class="text-xl font-bold mb-2">Innovation Hubs</h4>
-                                    <p>Creating spaces where ideas flourish and innovation thrives</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="order-1 md:order-2" in:fly={{ x: 50, duration: 800, delay: 400 }}>
-                        <div class="space-y-8">
-                            <div class="bg-white/80 backdrop-blur-md p-6 rounded-xl shadow-lg border-l-4 border-[#6504b0] hover:shadow-[0_10px_30px_rgba(101,4,176,0.15)] transition-all duration-300 transform hover:translate-x-10">
-                                <div class="flex items-center mb-4">
-                                    <div class="w-12 h-12 rounded-full bg-[#f8f0ff] flex items-center justify-center mr-4">
-                                        <Icon icon="mdi:magnify" class="text-[#6504b0]" width="24" height="24" />
-                                    </div>
-                                    <h4 class="text-2xl font-bold text-[#0a015a]">Curiosity-Driven Learning</h4>
-                                </div>
-                                <p class="text-lg text-gray-700 leading-relaxed">We encourage students to ask questions, explore concepts, and develop a deeper understanding of technology through guided discovery and experiential learning.</p>
-                            </div>
-                            
-                            <div class="bg-white/80 backdrop-blur-md p-6 rounded-xl shadow-lg border-l-4 border-[#FF4500] hover:shadow-[0_10px_30px_rgba(255,69,0,0.15)] transition-all duration-300 transform hover:translate-x-10">
-                                <div class="flex items-center mb-4">
-                                    <div class="w-12 h-12 rounded-full bg-[#fff4f0] flex items-center justify-center mr-4">
-                                        <Icon icon="mdi:puzzle-outline" class="text-[#FF4500]" width="24" height="24" />
-                                    </div>
-                                    <h4 class="text-2xl font-bold text-[#0a015a]">Creative Problem-Solving</h4>
-                                </div>
-                                <p class="text-lg text-gray-700 leading-relaxed">Through hands-on activities and collaborative projects, we nurture innovation and out-of-the-box thinking that prepares students for real-world challenges.</p>
-                            </div>
-                            
-                            <div class="bg-white/80 backdrop-blur-md p-6 rounded-xl shadow-lg border-l-4 border-[#00BFFF] hover:shadow-[0_10px_30px_rgba(0,191,255,0.15)] transition-all duration-300 transform hover:translate-x-10">
-                                <div class="flex items-center mb-4">
-                                    <div class="w-12 h-12 rounded-full bg-[#f0faff] flex items-center justify-center mr-4">
-                                        <Icon icon="mdi:domain" class="text-[#00BFFF]" width="24" height="24" />
-                                    </div>
-                                    <h4 class="text-2xl font-bold text-[#0a015a]">Building Future-Ready Hubs</h4>
-                                </div>
-                                <p class="text-lg text-gray-700 leading-relaxed">Our innovation hubs serve as incubation centers for young minds to explore, create, and bring ideas to life through state-of-the-art technology and expert guidance.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {/if}
-        </div>
+    <Innovation />
   
         <!-- Call to Action -->
-        <div id="cta" class="mt-24">
+        <div id="cta" class="md:mt-24 mt-12">
             {#if visibleSections.cta}
             <div class="relative overflow-hidden rounded-2xl bg-gradient-to-tl from-[#0e1036] to-[#0d017f] p-12 shadow-[0_20px_60px_rgba(101,4,176,0.3)]" in:fly={{ y: 50, duration: 800 }}>
                 <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full transform translate-x-1/2 -translate-y-1/3"></div>
                 <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full transform -translate-x-1/3 translate-y-1/3"></div>
                 
                 <div class="relative z-10 text-center">
-                    <h3 class="text-4xl font-bold text-white mb-6">Join the Education Revolution</h3>
-                    <p class="text-xl text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed">
+                    <h3 class="lg:text-4xl text-2xl font-bold text-white mb-6">Join the Education Revolution</h3>
+                    <p class="md:text-xl text-lg text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed">
                         Partner with Creoleap Technologies to transform your educational institution and prepare students for the future.
                     </p>
                     
