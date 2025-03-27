@@ -95,7 +95,7 @@
       {#if visible}
       <div class="text-center lg:mb-20 md:mb-16 mb-10" in:fly={{ y: 50, duration: 800, delay: 200 }}>
 
-          <p class="mt-0 md:text-2xl text-lg text-gray-700 max-w-8xl mx-auto leading-relaxed !font-sans">
+          <p class="mt-0 md:text-2xl text-lg text-gray-700 max-w-8xl mx-auto leading-relaxed !font-ubuntu">
               At Creoleap Technologies, we are transforming education by integrating AI, Robotics, and STEM learning into a dynamic, NEP-aligned curriculum based on the 
                  CCC Method. Our mission is to empower students and educators with innovative tools, fostering a culture of inquiry-driven, hands-on learning that prepares young minds for the future.
           </p>
@@ -114,7 +114,7 @@
                       </div>
                       <span class="bg-gradient-to-r from-[#080A25] to-[#0a015a] bg-clip-text text-transparent">Our Vision</span>
                   </h3>
-                  <p class="text-lg !font-sans text-gray-700 mb-6 leading-relaxed pl-4 border-l-2 border-purple-200">
+                  <p class="text-lg !font-ubuntu text-gray-700 mb-6 leading-relaxed pl-4 border-l-2 border-purple-200">
                       Creoleap Technologies envisions a future where students "Leap into the AI Future" through hands-on learning in AI, Robotics, and STEM, fostering curiosity, creativity, and critical thinking.
                   </p>
                  </div>
@@ -126,7 +126,7 @@
                       </div>
                       <span class="bg-gradient-to-r from-[#0a015a] to-[#4a30a0] bg-clip-text text-transparent">Our Mission</span>
                   </h3>
-                  <p class="text-lg !font-sans text-gray-700 leading-relaxed pl-4 border-l-2 border-purple-200">
+                  <p class="text-lg !font-ubuntu text-gray-700 leading-relaxed pl-4 border-l-2 border-purple-200">
                   We equip educators and students with cutting-edge tools and experiential learning, bridging theory and practice to drive innovation and real-world problem-solving.
                  </div>
               </div>

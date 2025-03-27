@@ -348,7 +348,7 @@
     }
 
     .section {
-      padding: 4rem 2rem;
+      padding: 2rem 1rem;
       /* background-color: #f9fafb; */
       text-align: center;
     }
@@ -408,7 +408,7 @@
   
     @media (max-width: 768px) {
       .section {
-        padding: 2rem 1rem;
+        padding: 0rem 0rem;
       }
   
       .section h2 {
