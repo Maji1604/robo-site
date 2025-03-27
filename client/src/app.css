@@ -71,7 +71,10 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-ubuntu;
+    @apply bg-background text-foreground font-ubuntu
   }
 }
 
+body {
+  font-family: "Ubuntu", sans-serif !important;
+}

@@ -184,13 +184,13 @@
 </script>
 
 <div bind:this={componentRoot}>
-    <header class="pt-20 z-10 bg-white">
+    <header class="lg:pt-20 md:pt-16 pt-10 z-10 bg-white !font-ubuntu">
         <div class="px-8">
-            <div class="text-center mb-16">
-                <h3 class="text-5xl font-bold bg-gradient-to-tr from-[#101447] to-[#1201a9] text-transparent bg-clip-text inline-block pb-2">Future Ready Learning Solutions</h3>
-                <div class="w-24 h-1 bg-gradient-to-br from-[#101447] to-[#1201a9] mx-auto mt-4 rounded-full"></div>
+            <div class="text-center lg:mb-16 md:mb-12 mb-8">
+                <h3 class="lg:text-5xl md:text-3xl text-2xl font-bold bg-gradient-to-tr from-[#101447] to-[#1201a9] text-transparent bg-clip-text inline-block pb-2">Future Ready Learning Solutions</h3>
+                <div class="w-24 h-1 bg-gradient-to-br from-[#101447] to-[#1201a9] mx-auto lg:mt-4 md:mt-2 mt-0 rounded-full"></div>
             </div>
-            <div class="flex justify-center items-center py-4">
+            <div class="flex justify-center items-center lg:py-4 md:py-3 py-1">
                 <!-- Navigation -->
                 <nav class="w-full overflow-x-auto" bind:this={navElement}>
                     <ul class="flex w-full justify-between lg:justify-center gap-2 lg:gap-5 border-b">
@@ -198,7 +198,7 @@
                             <li class="flex-1 lg:flex-none lg:w-{100 / content.length}% text-center">
                                 <button 
                                     bind:this={tabButtons[item.id]}
-                                    class="w-full px-8 py-5 text-lg lg:text-xl font-ubuntu font-bold whitespace-nowrap transition-all duration-300 rounded-t-3xl {activeSection === item.id ? `bg-gradient-to-b ${item.gradient} text-white` : `text-gray-600 hover:${item.hoverColor}`}"
+                                    class="w-full lg:px-8  lg:py-5 md:px-6 md:py-4 px-4 py-2 md:text-lg text-base lg:text-xl font-ubuntu font-bold whitespace-nowrap transition-all duration-300 lg:rounded-t-3xl md:rounded-t-2xl rounded-t-xl {activeSection === item.id ? `bg-gradient-to-b ${item.gradient} text-white` : `text-gray-600 hover:${item.hoverColor}`}"
                                     on:click={() => setActiveSection(item.id, true)}
                                 >
                                     {item.title}
@@ -214,7 +214,7 @@
         </div>
     </header>
 
-    <main class="lg:container lg:mx-auto p-4 lg:p-8" bind:this={sectionElement}>
+    <main class="lg:container !font-ubuntu lg:mx-auto p-4 lg:p-8" bind:this={sectionElement}>
         {#each content as item}
             {#if activeSection === item.id}
                 <div class="mt-0 animate-fadeIn">
@@ -239,15 +239,15 @@
                         </div>
 
                         <!-- Content Section -->
-                        <div class="w-full lg:w-1/2 md:w-3/4 flex flex-col gap-6">
-                            <h2 class="text-3xl md:text-5xl font-extrabold font-cool leading-normal bg-gradient-to-r {item.gradient} bg-clip-text text-transparent">
+                        <div class="w-full !font-ubuntu lg:w-1/2 md:w-3/4 flex flex-col lg:gap-6 gap-4 ">
+                            <h2 class="md:text-3xl text-2xl lg:text-5xl font-extrabold font-cool leading-normal bg-gradient-to-r {item.gradient} bg-clip-text text-transparent">
                                 {item.title}
                             </h2>
-                            <p class="text-lg md:text-xl !leading-normal font-ubuntu text-gray-600">
+                            <p class="md:text-lg text-base  lg:text-xl !leading-normal !font-ubuntu text-gray-600">
                                 {item.description}
                             </p>
                             <button
-                                class="px-7 bg-gradient-to-l {item.gradient} py-3 font-medium font-ubuntu text-lg rounded-full text-white w-fit"
+                                class="md:px-7 px-5 bg-gradient-to-l {item.gradient} md:py-3 py-2 font-medium !font-ubuntu text-lg rounded-full text-white w-fit"
                                 on:click={() => setActiveSection(item.id, true)}
                             >
                                 {item.buttonText}
@@ -260,7 +260,7 @@
     </main>
 </div>
 <div>
-    <section class="section font-ubuntu">
+    <section class="section !font-ubuntu">
  
   
         <div class="grid">
@@ -269,8 +269,8 @@
             <div class="icon">
               <Icon icon="carbon:education" width="48" height="48" />
             </div>
-            <h3>AI-Based Robotics Education</h3>
-            <p>
+            <h3 class="!font-ubuntu ">AI-Based Robotics Education</h3>
+            <p class="!font-ubuntu ">  
               Smart robotic kits designed for K-12 students. AI-powered learning integrated with real-world applications. Hands-on experience in automation, coding, and robotics.
             </p>
           </div>
@@ -280,8 +280,8 @@
             <div class="icon">
               <Icon icon="solar:notebook-bookmark-bold-duotone" width="48" height="48" />
             </div>
-            <h3>AI-Driven STEM Curriculum</h3>
-            <p>
+            <h3 class="!font-ubuntu ">AI-Driven STEM Curriculum</h3>
+            <p class="!font-ubuntu ">
               Customized AI-infused STEM learning programs. Aligned with NEP 2020 and global educational standards. Adaptive learning with AI-based assessments for personalized growth.
             </p>
           </div>
@@ -291,8 +291,8 @@
             <div class="icon">
               <Icon icon="mdi:laptop" width="48" height="48" />
             </div>
-            <h3>AI-Powered Learning Platform</h3>
-            <p>
+            <h3 class="!font-ubuntu ">AI-Powered Learning Platform</h3>
+            <p class="!font-ubuntu ">
               Interactive online modules for immersive robotics education. Virtual AI simulations in STEM, Robotics, and Electronics.
             </p>
           </div>
@@ -302,8 +302,8 @@
             <div class="icon">
               <Icon icon="prime:microchip-ai" width="52" height="52" />
             </div>
-            <h3>AI Training & Workshops</h3>
-            <p>
+            <h3 class="!font-ubuntu ">AI Training & Workshops</h3>
+            <p class="!font-ubuntu ">
               AI and robotics boot camps for students and professionals. Faculty training programs to enhance AI literacy. AI readiness initiatives for institutions and educators.
             </p>
           </div>
@@ -395,7 +395,7 @@
     }
   
     .card p {
-      font-size: 1rem;
+      font-size: 1.2rem;
       color: #64748b;
       line-height: 1.6;
     }

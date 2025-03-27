@@ -58,14 +58,14 @@
   <div class="overlay"></div>
  
   <div class="content z-10 w-full px-4 md:w-3/4 lg:w-3/4">
-    <h1 style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);" class="text-white w-full font-cool font-extrabold text-3xl  md:text-4xl lg:text-6xl xl:text-[5rem] !leading-normal">
+    <h1 style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);" class="text-white w-full !font-ubuntu font-extrabold text-3xl  md:text-4xl lg:text-6xl xl:text-[5rem] !leading-normal">
       Empowering Minds,<br/>
       Transforming Futures with AI Innovation
     </h1>
-    <p style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);" class="text-white font-ubuntu text-lg md:text-xl lg:text-3xl !leading-loose my-4 md:my-6 lg:my-10">
+    <p style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);" class="text-white !font-ubuntu text-lg md:text-xl lg:text-3xl !leading-loose my-4 md:my-6 lg:my-10">
       Empowering young minds with cutting edge AI, STEM, Robotics and Electronics education, enabling them to innovate and lead in a technology-driven world.
     </p>
-    <a href="/#solution" class="px-4 py-2 md:px-5 md:py-3 mt-2 font-ubuntu font-medium text-lg md:text-xl lg:text-2xl z-10 w-fit text-white whitespace-nowrap rounded-full bg-gradient-to-l from-[#6504B0] to-[#C961DE]">
+    <a href="/#solution" class="px-4 py-2 md:px-5 md:py-3 mt-2 !font-ubuntu font-medium text-lg md:text-xl lg:text-2xl z-10 w-fit text-white whitespace-nowrap rounded-full bg-gradient-to-l from-[#6504B0] to-[#C961DE]">
       Unleash Potential
     </a>
   </div>

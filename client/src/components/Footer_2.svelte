@@ -23,7 +23,7 @@
           <li><a href="/about_us" class="hover:text-blue-400">About Us</a></li>
           <li><a href="/" class="hover:text-blue-400">Solutions</a></li>
           <li><a href="/#contact" class="hover:text-blue-400">Contact Us</a></li>
-          <li><a href="/" class="hover:text-blue-400">Careers</a></li>
+          <li><a href="/careers" class="hover:text-blue-400">Careers</a></li>
         </ul>
       </div>
 

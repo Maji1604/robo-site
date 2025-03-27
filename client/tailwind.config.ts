@@ -68,7 +68,7 @@ const config: Config = {
 			},
 			fontFamily: {
 				sans: [...fontFamily.sans],
-				ubuntu: ['Ubuntu', 'sans-serif'],
+				ubuntu: ["Ubuntu", "sans-serif"]
 			},
 			keyframes: {
 				"accordion-down": {

@@ -79,7 +79,7 @@
 
 <svelte:window on:mousemove={handleMouseMove} />
 
-<section id="about" class="flex justify-center items-center relative overflow-hidden bg-gradient-to-br from-white to-[#f8f6ff] text-[#080A25] py-24 mt-0">
+<section id="about" class="flex justify-center items-center relative overflow-hidden bg-gradient-to-br from-white to-[#f8f6ff] text-[#080A25] lg:py-24 md:py-16 py-10 mt-0">
   <!-- Animated background elements -->
   <div class="absolute inset-0 overflow-hidden">
       <div class="absolute top-0 left-0 w-full h-full opacity-10">
@@ -93,9 +93,9 @@
       
       <!-- Title and Intro -->
       {#if visible}
-      <div class="text-center mb-20" in:fly={{ y: 50, duration: 800, delay: 200 }}>
+      <div class="text-center lg:mb-20 md:mb-16 mb-10" in:fly={{ y: 50, duration: 800, delay: 200 }}>
 
-          <p class="mt-0 text-2xl text-gray-700 max-w-8xl mx-auto leading-relaxed">
+          <p class="mt-0 md:text-2xl text-lg text-gray-700 max-w-8xl mx-auto leading-relaxed !font-sans">
               At Creoleap Technologies, we are transforming education by integrating AI, Robotics, and STEM learning into a dynamic, NEP-aligned curriculum based on the 
                  CCC Method. Our mission is to empower students and educators with innovative tools, fostering a culture of inquiry-driven, hands-on learning that prepares young minds for the future.
           </p>
@@ -103,7 +103,7 @@
       {/if}
 
       <!-- Vision & Mission -->
-      <div id="vision-mission" class="grid  grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+      <div id="vision-mission" class="grid  !font-ubuntu grid-cols-1 lg:grid-cols-2 gap-16 items-center lg:mb-24 md:mb-16 mb-5">
           {#if visibleSections.vision}
           <div in:fly={{ x: -50, duration: 800, delay: 300 }}>
               <div class="flex flex-col gap-5 ">
@@ -114,7 +114,7 @@
                       </div>
                       <span class="bg-gradient-to-r from-[#080A25] to-[#0a015a] bg-clip-text text-transparent">Our Vision</span>
                   </h3>
-                  <p class="text-lg text-gray-700 mb-6 leading-relaxed pl-4 border-l-2 border-purple-200">
+                  <p class="text-lg !font-sans text-gray-700 mb-6 leading-relaxed pl-4 border-l-2 border-purple-200">
                       Creoleap Technologies envisions a future where students "Leap into the AI Future" through hands-on learning in AI, Robotics, and STEM, fostering curiosity, creativity, and critical thinking.
                   </p>
                  </div>
@@ -126,7 +126,7 @@
                       </div>
                       <span class="bg-gradient-to-r from-[#0a015a] to-[#4a30a0] bg-clip-text text-transparent">Our Mission</span>
                   </h3>
-                  <p class="text-lg text-gray-700 leading-relaxed pl-4 border-l-2 border-purple-200">
+                  <p class="text-lg !font-sans text-gray-700 leading-relaxed pl-4 border-l-2 border-purple-200">
                   We equip educators and students with cutting-edge tools and experiential learning, bridging theory and practice to drive innovation and real-world problem-solving.
                  </div>
               </div>
@@ -149,7 +149,7 @@
                       <div class="w-16 h-16 rounded-full bg-[#ffefe9] flex items-center justify-center mb-4 transition-transform duration-500 hover:scale-110">
                           <Icon icon="mdi:brain" class="text-[#FF4500]" width="40" height="40" />
                       </div>
-                      <p class="text-center font-bold text-[#0a015a]">Curiosity</p>
+                      <p class="text-center !font-ubuntu font-bold text-[#0a015a]">Curiosity</p>
                       <div class="w-10 h-1 bg-[#FF4500] mt-3 rounded-full"></div>
                   </div>
                   
@@ -158,7 +158,7 @@
                       <div class="w-16 h-16 rounded-full bg-[#e6f7f7] flex items-center justify-center mb-4 transition-transform duration-500 hover:scale-110">
                           <Icon icon="mdi:lightbulb-on-outline" class="text-[#008080]" width="40" height="40" />
                       </div>
-                      <p class="text-center font-bold text-[#0a015a]">Creativity</p>
+                      <p class="text-center !font-ubuntu font-bold text-[#0a015a]">Creativity</p>
                       <div class="w-10 h-1 bg-[#008080] mt-3 rounded-full"></div>
                   </div>
                   
@@ -167,7 +167,7 @@
                       <div class="w-16 h-16 rounded-full bg-[#eeecf7] flex items-center justify-center mb-4 transition-transform duration-500 hover:scale-110">
                           <Icon icon="mdi:head-cog-outline" class="text-[#483D8B]" width="40" height="40" />
                       </div>
-                      <p class="text-center font-bold text-[#0a015a]">Critical Thinking</p>
+                      <p class="text-center !font-ubuntu font-bold text-[#0a015a]">Critical Thinking</p>
                       <div class="w-10 h-1 bg-[#483D8B] mt-3 rounded-full"></div>
                   </div>
               </div>
