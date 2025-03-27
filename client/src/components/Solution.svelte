@@ -265,12 +265,12 @@
   
         <div class="grid">
           <!-- Card 1: AI-Based Robotics Education -->
-          <div class="card">
+          <div class="card ">
             <div class="icon">
               <Icon icon="carbon:education" width="48" height="48" />
             </div>
             <h3 class="!font-ubuntu ">AI-Based Robotics Education</h3>
-            <p class="!font-ubuntu ">  
+            <p class="!font-ubuntu !m-0">  
               Smart robotic kits designed for K-12 students. AI-powered learning integrated with real-world applications. Hands-on experience in automation, coding, and robotics.
             </p>
           </div>
@@ -281,7 +281,7 @@
               <Icon icon="solar:notebook-bookmark-bold-duotone" width="48" height="48" />
             </div>
             <h3 class="!font-ubuntu ">AI-Driven STEM Curriculum</h3>
-            <p class="!font-ubuntu ">
+            <p class="!font-ubuntu !m-0">
               Customized AI-infused STEM learning programs. Aligned with NEP 2020 and global educational standards. Adaptive learning with AI-based assessments for personalized growth.
             </p>
           </div>
@@ -292,7 +292,7 @@
               <Icon icon="mdi:laptop" width="48" height="48" />
             </div>
             <h3 class="!font-ubuntu ">AI-Powered Learning Platform</h3>
-            <p class="!font-ubuntu ">
+            <p class="!font-ubuntu !m-0">
               Interactive online modules for immersive robotics education. Virtual AI simulations in STEM, Robotics, and Electronics.
             </p>
           </div>
@@ -407,20 +407,30 @@
     }
   
     @media (max-width: 768px) {
-      .section {
-        padding: 0rem 0rem;
-      }
-  
-      .section h2 {
-        font-size: 2rem;
-      }
-  
-      .section p {
-        font-size: 1rem;
-      }
-  
-      .grid {
-        grid-template-columns: 1fr;
-      }
+    .section {
+      padding: 0rem 0rem;
     }
+
+    .section h2 {
+      font-size: 2rem;
+    }
+
+    .section p {
+      font-size: 1rem;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+      padding: 0 0.5rem; /* Further reduced padding on small screens */
+    }
+
+
+    .card h3 {
+      font-size: 1.25rem; /* Slightly smaller heading on small screens */
+    }
+
+    .card p {
+      font-size: 1rem; /* Slightly smaller text on small screens */
+    }
+  }
 </style>
