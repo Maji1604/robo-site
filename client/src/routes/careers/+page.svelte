@@ -386,7 +386,7 @@ async function handleCTASubmit(event) {
     aria-label="Team collaborating on tech innovation"
   >
     <div class="absolute inset-0 bg-gradient-to-tr from-black/40 to-blue-950/80"></div>
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 h-full flex items-center relative z-10">
+    <div class="max-w-7xl  mx-auto px-6 lg:px-8 h-full flex items-center justify-center relative z-10">
       {#if visibleSections.hero}
         <div class="text-center text-white" in:fly={{ y: 50, duration: 800 }}>
           <h1
