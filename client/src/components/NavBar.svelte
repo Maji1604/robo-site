@@ -71,7 +71,17 @@
     </div>
   
     <!-- Desktop Navigation -->
-    <ul class="hidden md:flex space-x-6 xl:pr-10 lg:pr-8">
+    <ul class="hidden md:flex items-center space-x-6 xl:pr-10 lg:pr-8">
+     <!-- <div class="flex items-center rounded-full">
+
+  <img src="/pres.gif" alt="Demo GIF"  class="h-12" />
+
+
+      <a href="/#solution" class="px-4 py-2 md:px-5 hover:scale-110 transition-all duration-300  mt-2 !font-ubuntu font-medium text-lg z-10 w-fit text-white whitespace-nowrap rounded-full " >
+Schedule a Demo
+      </a>
+     </div> -->
+     
       <li>
         <a href="/" class="relative group">
           <span class="font-medium text-white/90 transition-all duration-300 group-hover:text-white text-lg">Home</span>

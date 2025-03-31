@@ -7,6 +7,7 @@
   import { toast } from 'svelte-sonner';
   import * as Select from "$lib/components/ui/select";
 
+
   // Job positions data with sales roles in TN and Kerala, adjusted for Creoleap
   /**
    * @type {any[]}
@@ -125,7 +126,12 @@
     //   ],
     // },
   ];
-
+  const qualifications = [
+    { value: "Bachelor's Degree", label: "Bachelor's Degree" },
+    { value: "Master's Degree", label: "Master's Degree" },
+    { value: 'Other', label: 'Other' },
+  ];
+  let selectedQualification = '';
   let isCTASubmitting = false;
   /**
    * @type {File|null}
@@ -157,73 +163,91 @@
     }
   }
 
-  async function handleCTASubmit(event) {
-    event.preventDefault();
+  // Convert file to Base64
+  /**
+	 * @param {Blob} file
+	 */
+  async function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64String = reader.result.split(',')[1]; // Remove the data URL prefix
+        resolve(base64String);
+      };
+      reader.onerror = (error) => reject(error);
+      reader.readAsDataURL(file);
+    });
+  }
 
-    isCTASubmitting = true;
+  /**
+	 * @param {{ preventDefault: () => void; target: any; }} event
+	 */
+// In CareersPage.svelte, update the handleCTASubmit function
+async function handleCTASubmit(event) {
+  console.log('clicked')
+  event.preventDefault();
 
-    const form = event.target;
-    const formData = new FormData(form);
-    const formValues = Object.fromEntries(formData.entries());
+  isCTASubmitting = true;
+  const form = event.target;
+  const formData = new FormData(form);
+  const formValues = Object.fromEntries(formData.entries());
 
-    // Validate required fields
-    if (
-      !formValues.firstName ||
-      !formValues.lastName ||
-      !formValues.mobile ||
-      !formValues.email ||
-      !formValues.education ||
-      !resumeFile
-    ) {
-      toast.error('Please fill out all required fields.');
-      isCTASubmitting = false;
-      return;
-    }
+  // Validate required fields
+  if (
+    !formValues.firstName ||
+    !formValues.lastName ||
+    !formValues.mobile ||
+    !formValues.email ||
+    !selectedQualification ||
+    !resumeFile
+  ) {
+    toast.error('Please fill out all required fields.');
+    isCTASubmitting = false;
+    return;
+  }
 
-    // Prepare EmailJS payload
+  try {
+    // Convert the resume file to Base64
+    const resumeBase64 = await fileToBase64(resumeFile);
+
+    // Prepare the payload for the serverless function
     const payload = {
-      service_id: 'service_d1pb0w7', // Replace with your EmailJS service ID
-      template_id: 'template_5eda1rn', // Replace with your EmailJS template ID
-      user_id: 'CdswteZ6BTKu2ZOE3', // Replace with your EmailJS user ID
-      template_params: {
-        firstName: formValues.firstName,
-        lastName: formValues.lastName,
-        mobile: formValues.mobile,
-        email: formValues.email,
-        education: formValues.education,
-        message: formValues.message || 'N/A',
-        resume: 'Resume attached (see below)', // Note: EmailJS doesn't support file attachments directly
-      },
+      firstName: formValues.firstName,
+      lastName: formValues.lastName,
+      mobile: formValues.mobile,
+      email: formValues.email,
+      education: selectedQualification,
+      message: formValues.message || 'N/A',
+      resumeBase64: resumeBase64,
     };
 
-    try {
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
+    // Send the data to the serverless function
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
 
-      const responseText = await response.text();
+    const result = await response.json();
 
-      if (response.ok) {
-        toast.success('Your application has been submitted successfully!');
-        form.reset();
-        resumeFile = null;
-      } else {
-        console.error('Server response:', responseText);
-        toast.error(
-          `Failed to send application. Status: ${response.status}. Please check console for details.`
-        );
-      }
-    } catch (error) {
-      console.error('Error sending application:', error);
-      toast.error('An error occurred while submitting your application.');
-    } finally {
-      isCTASubmitting = false;
+    if (response.ok && result.success) {
+      toast.success('Your application has been submitted successfully!');
+      form.reset();
+      resumeFile = null;
+      selectedQualification = '';
+    } else {
+      console.error('Server response:', result);
+      toast.error(result.error || 'Failed to send application. Please try again.');
     }
+  } catch (error) {
+    console.error('Error sending application:', error);
+    toast.error('An error occurred while submitting your application.');
+  } finally {
+    isCTASubmitting = false;
   }
+}
 
   // Testimonials data
   const testimonials = [
@@ -268,8 +292,8 @@
   let selectedLocation = 'All';
   const departments = ['All', 'Sales & Marketing', 'Learning & Development','Administration'];
   const locations = [
-  'All',
-  'Onsite',
+    'All',
+    'Onsite',
     'Remote',
   ];
 
@@ -357,7 +381,7 @@
 <div class="min-h-screen lg:mt-20 mt-14 bg-white text-gray-900 font-sans">
   <!-- Hero Section with Tech-Focused Image Background -->
   <section
-    class="relative overflow-hidden h-[600px] bg-cover bg-center bg-no-repeat"
+    class="relative overflow-hidden h-[600px] bg-cover lg:bg-center bg-right bg-no-repeat"
     style="background-image: url('/career.jpg');"
     aria-label="Team collaborating on tech innovation"
   >
@@ -370,13 +394,13 @@
           >
             Join Creoleap to Drive Tech Innovation
           </h1>
-          <p class="md:text-xl text-lg max-w-3xl mx-auto mb-8 drop-shadow-md">
+          <p class="md:text-xl !font-Ubuntu text-lg max-w-3xl mx-auto mb-8 drop-shadow-md">
             Explore exciting opportunities to deliver cutting-edge tech solutions to
             clients worldwide.
           </p>
           <a
             href="#positions"
-            class="inline-flex items-center px-8 py-3 bg-gradient-to-l from-[#6504B0] to-[#C961DE] text-white font-medium rounded-full shadow-lg hover:bg-teal-600 transition-all duration-300"
+            class="inline-flex !font-Ubuntu items-center px-8 py-3 bg-gradient-to-l from-[#6504B0] to-[#C961DE] text-white font-medium rounded-full shadow-lg hover:bg-teal-600 transition-all duration-300"
           >
             Browse Openings
           </a>
@@ -389,7 +413,7 @@
   <section id="why" class="lg:py-24 md:py-16 py-10 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       {#if visibleSections.why}
-        <div class="text-center mb-16 W" in:fade>
+        <div class="text-center mb-16 W" in:fade>
           <h2
             class="lg:text-4xl text-2xl font-bold mb-4 font-heading relative inline-block pb-2"
           >
@@ -399,7 +423,7 @@
               rounded-full"
             ></span>
           </h2>
-          <p class="text-xl !font-ubuntu text-gray-600 max-w-3xl mx-auto">
+          <p class="text-xl !font-Ubuntu text-gray-600 max-w-3xl mx-auto">
             Discover what makes Creoleap Technologies a great place to grow your
             career in technology and innovation.
           </p>
@@ -421,7 +445,7 @@
               <h3 class="text-xl font-semibold text-gray-900 mb-2 font-heading">
                 {reason.title}
               </h3>
-              <p class="text-gray-600 mb-4 !font-ubuntu">{reason.desc}</p>
+              <p class="text-gray-600 mb-4 !font-Ubuntu">{reason.desc}</p>
             </div>
           {/each}
         </div>
@@ -430,7 +454,7 @@
   </section>
 
   <!-- Mission Section with Mission Statement and CCC Cards -->
-  <section id="mission" class="lg:py-24 md:py-16 py-10">
+  <section id="mission" class="!font-Ubuntu lg:py-24 md:py-16 py-10">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       {#if visibleSections.mission}
         <div class="text-center lg:mb-16 md:mb-10 mb-2" in:fade>
@@ -447,7 +471,7 @@
 
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <p
-            class="text-xl !font-ubuntu text-gray-600 max-w-3xl mx-auto relative flex text-center items-center justify-center gap-3"
+            class="text-xl !font-Ubuntu text-gray-600 max-w-3xl mx-auto relative flex text-center items-center justify-center gap-3"
           >
             We equip educators and students with cutting-edge tools and experiential
             learning, bridging theory and practice to drive innovation and real-world
@@ -455,7 +479,7 @@
           </p>
           <!-- Right Side: CCC Cards -->
           <div
-            class="grid grid-cols-1 sm:grid-cols-3 lg:gap-6 gap-3 !font-ubuntu"
+            class="grid grid-cols-1 sm:grid-cols-3 lg:gap-6 gap-3 !font-Ubuntu"
             in:fly={{ x: 50, duration: 800, delay: 200 }}
           >
             <!-- Curiosity Card -->
@@ -467,7 +491,7 @@
               >
                 <Icon icon="mdi:brain" class="text-[#FF4500]" width="40" height="40" />
               </div>
-              <p class="text-center !font-ubuntu font-bold text-[#0a015a]">Curiosity</p>
+              <p class="text-center !font-Ubuntu font-bold text-[#0a015a]">Curiosity</p>
               <div class="w-10 h-1 bg-[#FF4500] mt-3 rounded-full"></div>
             </div>
 
@@ -485,7 +509,7 @@
                   height="40"
                 />
               </div>
-              <p class="text-center font-bold text-[#0a015a] !font-ubuntu">Creativity</p>
+              <p class="text-center font-bold text-[#0a015a] !font-Ubuntu">Creativity</p>
               <div class="w-10 h-1 bg-[#008080] mt-3 rounded-full"></div>
             </div>
 
@@ -503,7 +527,7 @@
                   height="40"
                 />
               </div>
-              <p class="text-center font-bold text-[#0a015a] !font-ubuntu">Critical Thinking</p>
+              <p class="text-center font-bold text-[#0a015a] !font-Ubuntu">Critical Thinking</p>
               <div class="w-10 h-1 bg-[#483D8B] mt-3 rounded-full"></div>
             </div>
           </div>
@@ -513,7 +537,7 @@
   </section>
 
   <!-- Combined Open Positions and CTA Section -->
-  <div class=" mx-auto px-6 lg:px-20 lg:py-24 md:py-16 py-0">
+  <div class="!font-Ubuntu  mx-auto px-6 lg:px-20 lg:py-24 md:py-16 py-0">
     <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 md:gap-8 gap-6">
       <!-- Open Positions -->
       <section id="positions" class="rounded-2xl h-fit p-8">
@@ -660,7 +684,7 @@
               >
                 Join Our Creoleap Team
               </h2>
-              <p class="lg:text-xl !font-ubuntu text-base text-gray-600 max-w-3xl mx-auto mb-8">
+              <p class="lg:text-xl !font-Ubuntu text-base text-gray-600 max-w-3xl mx-auto mb-8">
                 Not seeing the perfect role? We're always looking for exceptional
                 talent to join our mission.
               </p>
@@ -668,11 +692,11 @@
               <!-- Updated Form -->
               <form
                 on:submit|preventDefault={handleCTASubmit}
-                class="space-y-6 !font-ubuntu"
+                class="space-y-6 !font-Ubuntu"
                 enctype="multipart/form-data"
               >
                 <!-- First Name and Last Name -->
-                <div class="grid grid-cols-1 !font-ubuntu sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 !font-Ubuntu sm:grid-cols-2 gap-4">
                   <div>
                     <label
                       for="firstName"
@@ -692,7 +716,7 @@
                   <div>
                     <label
                       for="lastName"
-                      class="block text-sm  !font-ubuntu font-medium text-gray-700"
+                      class="block text-sm  !font-Ubuntu font-medium text-gray-700"
                     >
                       Last Name*
                     </label>
@@ -708,7 +732,7 @@
                 </div>
 
                 <!-- Mobile Number and Email -->
-                <div class="grid grid-cols-1 !font-ubuntu sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 !font-Ubuntu sm:grid-cols-2 gap-4">
                   <div>
                     <label
                       for="mobile"
@@ -731,7 +755,7 @@
                   <div>
                     <label
                       for="email"
-                      class="block text-sm !font-ubuntu font-medium text-gray-700"
+                      class="block text-sm !font-Ubuntu font-medium text-gray-700"
                     >
                       Email*
                     </label>
@@ -750,26 +774,33 @@
                 <div>
                   <label
                     for="education"
-                    class="block !font-ubuntu text-sm font-medium text-gray-700"
+                    class="block text-sm font-medium text-gray-700"
                   >
                     Educational Qualification*
                   </label>
-                  <select
-                    id="education"
-                    name="education"
-                    required
+                  <Select.Root
+                    bind:value={selectedQualification}
+                    type="single"
                     disabled={isCTASubmitting}
-                    class="mt-1 !font-ubuntu block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
                   >
-                    <option value="" disabled selected>
-                      Select your qualification
-                    </option>
-                    <option value="High School">High School</option>
-                    <option value="Bachelor's Degree">Bachelor's Degree</option>
-                    <option value="Master's Degree">Master's Degree</option>
-                    <option value="PhD">PhD</option>
-                    <option value="Other">Other</option>
-                  </select>
+                    <Select.Trigger
+                      class="mt-1  w-full  border border-gray-300 rounded-md shadow-sm bg-white text-gray-900 focus:outline-none focus:ring-0 focus:ring-purple-500 disabled:opacity-50"
+                      placeholder="Select your qualification"
+                    >
+                      {selectedQualification || 'Select your qualification'}
+                    </Select.Trigger>
+                    <Select.Content>
+                      {#each qualifications as qualification}
+                        <Select.Item
+                          value={qualification.value}
+                          disabled={isCTASubmitting}
+                          class=" hover:bg-gray-100 cursor-pointer"
+                        >
+                          {qualification.label}
+                        </Select.Item>
+                      {/each}
+                    </Select.Content>
+                  </Select.Root>
                 </div>
 
                 <!-- Resume Upload -->
@@ -796,7 +827,7 @@
                 <div>
                   <label
                     for="message"
-                    class="block !font-ubuntu text-sm font-medium text-gray-700"
+                    class="block !font-Ubuntu text-sm font-medium text-gray-700"
                   >
                     Message (Optional)
                   </label>
@@ -814,7 +845,7 @@
                   <button
                     type="submit"
                     disabled={isCTASubmitting}
-                    class="w-full !font-ubuntu bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50 disabled:cursor-not-allowed"
+                    class="w-full !font-Ubuntu bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {#if isCTASubmitting}
                       <span
@@ -836,8 +867,8 @@
               </form>
 
               <!-- Social Links -->
-              <div class="mt-10 !font-ubuntu">
-                <p class="text-gray-600 !font-ubuntu mb-4">Follow our journey</p>
+              <div class="mt-10 !font-Ubuntu">
+                <p class="text-gray-600 !font-Ubuntu mb-4">Follow our journey</p>
                 <div class="flex justify-center gap-6">
                   {#each [
                     { icon: "LinkedIn", svg: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" }
@@ -903,3 +934,5 @@
     }
   }
 </style>
+
+

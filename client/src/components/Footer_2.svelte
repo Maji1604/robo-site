@@ -94,7 +94,9 @@
           <Icon icon="mdi:instagram" width="24" height="24" />
         </a>
         <a
-          href="/"
+        href="https://wa.me/9363208701"
+        target="_blank"
+        rel="noopener noreferrer"
           class="text-gray-400 hover:text-[#FF6B6B] transition-colors"
           aria-label="WhatsApp"
         >
