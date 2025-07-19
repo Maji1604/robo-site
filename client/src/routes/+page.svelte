@@ -13,8 +13,16 @@ import NavBar from "../components/NavBar.svelte";
 	import Sample from "../components/sample.svelte";
 	import NewHome from "../components/Solution.svelte";
 	import { toast, Toaster } from 'svelte-sonner';
+	export let data;
 </script>
-
+<svelte:head>
+    <title>{data.seo.title}</title>
+    <meta name="description" content={data.seo.description} />
+    <meta property="og:title" content={data.seo.title} />
+    <meta property="og:description" content={data.seo.description} />
+    <meta property="og:image" content={data.seo.ogImage} />
+    <meta name="keywords" content={data.seo.keywords} />
+</svelte:head>
 <main class="">
 	<Toaster position="top-center" />
     <First />
@@ -29,7 +37,9 @@ import NavBar from "../components/NavBar.svelte";
 <!-- <OurSolution /> -->
 
 <Faq />
-<Innovation />
+<div class="lg:pb-32 md:pb-20 pb-12  ">
+	<Innovation />
+</div>
 <Chatbot />
 <!-- <Footer /> -->
 <div id="contact">

@@ -14,6 +14,6 @@
 </div>
     <!-- Footer Bottom -->
     <div class="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400">
-        &copy; 2025 CreoLeap Technologies. All rights reserved.
+        &copy; 2025 Creoleap Technologies. All rights reserved.
     </div>
 </footer>

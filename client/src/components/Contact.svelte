@@ -219,7 +219,8 @@
                 <Icon icon="mdi:linkedin" width="24" height="24" />
               </a>
               <a
-                href="/"
+            target="_blank"
+                href="https://www.instagram.com/creoleap_technologies?igsh=dG5jOG1iYTFmYXBz"
                 class="text-gray-300 hover:text-[#FF6B6B] transition-colors"
                 aria-label="Instagram"
               >

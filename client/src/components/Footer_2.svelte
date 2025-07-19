@@ -33,8 +33,8 @@
           Resources
         </h3>
         <ul class="space-y-2 text-gray-400">
-          <li><a href="/" class="hover:text-blue-400">Terms of Service</a></li>
-          <li><a href="/" class="hover:text-blue-400">Privacy Policy</a></li>
+          <li><a href="/terms&conditions" class="hover:text-blue-400">Terms & Conditions</a></li>
+          <li><a href="/privacy_policy" class="hover:text-blue-400">Privacy Policy</a></li>
         </ul>
       </div>
     </div>
@@ -66,7 +66,8 @@
         <div class="flex items-start gap-3 text-center md:text-left">
           <Icon icon="mdi:map-marker-outline" class="text-[#ef9eff94] mt-0.5 flex-shrink-0" width="20" />
           <p class="text-gray-400">
-            13/6, S.T. Hindu College Road, Beach Road,<br />Nagercoil - 629002
+            29/8/2A, First Floor, S.T. Hindu College Road, <br />
+            Beach Road, Nagercoil - 629002.
           </p>
         </div>
       </div>
@@ -87,7 +88,8 @@
           <Icon icon="mdi:linkedin" width="24" height="24" />
         </a>
         <a
-          href="/"
+        target="_blank"
+          href="https://www.instagram.com/creoleap_technologies?igsh=dG5jOG1iYTFmYXBz"
           class="text-gray-400 hover:text-[#FF6B6B] transition-colors"
           aria-label="Instagram"
         >

@@ -1,0 +1,10 @@
+export const load = async () => {
+    return {
+        seo: {
+            title: "Creoleap - Leap Into the AI Future",
+            description: "Creoleap provides cutting-edge AI and Robotics solutions,Empowering young minds with cutting edge AI, STEM, Robotics and Electronics education, enabling them to innovate and lead in a technology-driven world.",
+            ogImage: "https://www.creoleap.com/favicon.png",
+            keywords: "AI, web development, digital transformation, Creoleap, technology, innovation, software development, web design, digital solutions, IT services, cloud computing, cybersecurity, data analytics, machine learning, artificial intelligence, AI solutions, machine learning models, natural language processing, AI integration, AI consulting, deep learning, cognitive computing, AI development, predictive analytics, frontend development, backend development, full stack development, web applications, mobile development, responsive design, user experience, UX, user interface, UI, web hosting, e-commerce development, digital strategy, business automation, digital innovation, technology consulting, digital workplace, enterprise solutions, IT transformation, digital marketing, online presence, digital growth, healthcare technology, financial technology, FinTech, education technology, EdTech, retail technology, manufacturing technology, real estate technology, travel technology, hospitality technology, logistics technology, media technology, custom software development, IT consulting services, digital marketing services, SEO services, content management systems, CMS, customer relationship management, CRM, enterprise resource planning, ERP, software as a service, SaaS, platform as a service, PaaS, infrastructure as a service, IaaS, JavaScript, Python, Java, C#, Ruby on Rails, PHP, HTML/CSS, React, Angular, Vue.js, startups, tech trends, emerging technologies, digital disruption, agile development, DevOps, blockchain, Internet of Things, IoT, big data, business intelligence, creoleap technologies, "
+        }
+    };
+};
