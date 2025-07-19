@@ -692,11 +692,11 @@ async function handleCTASubmit(event) {
               <!-- Updated Form -->
               <form
                 on:submit|preventDefault={handleCTASubmit}
-                class="space-y-6 !font-Ubuntu"
+                class="space-y-6 !font-Ubuntu px-2"
                 enctype="multipart/form-data"
               >
                 <!-- First Name and Last Name -->
-                <div class="grid grid-cols-1 !font-Ubuntu sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 !font-Ubuntu sm:grid-cols-2 gap-4 ">
                   <div>
                     <label
                       for="firstName"

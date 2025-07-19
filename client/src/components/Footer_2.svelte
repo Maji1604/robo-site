@@ -66,7 +66,8 @@
         <div class="flex items-start gap-3 text-center md:text-left">
           <Icon icon="mdi:map-marker-outline" class="text-[#ef9eff94] mt-0.5 flex-shrink-0" width="20" />
           <p class="text-gray-400">
-            29/8/2A, First Floor, S.T. Hindu College Road, <br />
+            29/8/2A, First Floor,
+            <br /> S.T. Hindu College Road, <br />
             Beach Road, Nagercoil - 629002.
           </p>
         </div>
@@ -110,6 +111,6 @@
 
   <!-- Bottom Section with Copyright -->
   <div class="mt-12 pt-8 border-t border-gray-600 text-center text-gray-400">
-    © 2025 CreoLeap Technologies. All rights reserved.
+    © 2025 Creoleap Technologies. All rights reserved.
   </div>
 </footer>
