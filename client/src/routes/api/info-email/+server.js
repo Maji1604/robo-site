@@ -1,13 +1,7 @@
 
 import { json } from '@sveltejs/kit';
-<<<<<<< HEAD
 const VITE_RESEND_API_KEY_INFO=import.meta.env.VITE_RESEND_API_KEY_INFO 
  // info mail
-=======
-
-const RESEND_API_KEY = 're_NQ9f4R1P_MdyxioTRhSVEs5dxvrxfjgMu'; // info mail
-// const RESEND_API_KEY="re_26VudLLE_2N8do7voUM6RUHPaBh7RxLE9" hr mail
->>>>>>> 78c9611614ad31831e12551b1fdc05e775863ce8
 // @ts-ignore
 export async function POST({ request }) {
     try {
