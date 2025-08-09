@@ -21,11 +21,7 @@ export async function POST({ request }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-<<<<<<< HEAD
           Authorization: `Bearer ${VITE_RESEND_API_KEY_INFO}`,
-=======
-          Authorization: `Bearer ${RESEND_API_KEY}`,
->>>>>>> 78c9611614ad31831e12551b1fdc05e775863ce8
         },
         body: JSON.stringify({
           from: 'Creoleap Consultation Form <onboarding@resend.dev>',
