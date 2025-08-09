@@ -1,7 +1,13 @@
 
 import { json } from '@sveltejs/kit';
+<<<<<<< HEAD
 const VITE_RESEND_API_KEY_INFO=import.meta.env.VITE_RESEND_API_KEY_INFO 
  // info mail
+=======
+
+const RESEND_API_KEY = 're_NQ9f4R1P_MdyxioTRhSVEs5dxvrxfjgMu'; // info mail
+// const RESEND_API_KEY="re_26VudLLE_2N8do7voUM6RUHPaBh7RxLE9" hr mail
+>>>>>>> 78c9611614ad31831e12551b1fdc05e775863ce8
 // @ts-ignore
 export async function POST({ request }) {
     try {
@@ -21,7 +27,11 @@ export async function POST({ request }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+<<<<<<< HEAD
           Authorization: `Bearer ${VITE_RESEND_API_KEY_INFO}`,
+=======
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+>>>>>>> 78c9611614ad31831e12551b1fdc05e775863ce8
         },
         body: JSON.stringify({
           from: 'Creoleap Consultation Form <onboarding@resend.dev>',
