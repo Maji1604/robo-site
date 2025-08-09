@@ -4,10 +4,10 @@
 
     const cards = [
         { img: "/robo.webp" },
-        { img: "/lego.avif" },
+        { img: "/lego.webp" },
         { img: "/electronics.webp" },
         { img: "/ai.webp" }, 
-        { img: "/cloud.png" } // New card
+        { img: "/cloud.webp" } // New card
     ];
 
     let activeIndex = 0;
@@ -280,7 +280,7 @@
                             >
                                 Your browser does not support the video tag.
                             </video> -->
-                            <img src={card.img} alt="" class="rounded-l-[40px] object-cover ">
+                            <img src={card.img} loading="lazy" alt="" class="rounded-l-[40px] object-cover ">
                         </div>
                     </div>
                 </div>

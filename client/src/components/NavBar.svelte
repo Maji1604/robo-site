@@ -5,8 +5,8 @@
   import Icon from '@iconify/svelte';
 
   let isOpen = false;
-  let solutionsOpen = false; // Track Solutions submenu state
-  let logo = '/newLogo.png'; // Ensure this path is correct relative to your public folder
+  let solutionsOpen = false; 
+  let logo = '/newLogo.png'; 
   let menuRef: HTMLDivElement;
   let hamburgerRef: HTMLButtonElement;
 
@@ -128,6 +128,16 @@
               <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-[#C961DE] to-[#6504B0] transition-all duration-300 group-hover:w-full"></span>
             </a>
           </li>
+          <!-- <li>
+            <a
+              href="/careers"
+              on:click={(e) => handleNavigation(e, '/careers')}
+              class="text-white/90 hover:text-white text-lg font-medium transition-colors duration-300 relative group"
+            >
+              Careers
+              <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-[#C961DE] to-[#6504B0] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </li> -->
           <li class="relative group">
             <a
               href="/#solution"
@@ -138,7 +148,7 @@
               <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-[#C961DE] to-[#6504B0] transition-all duration-300 group-hover:w-full"></span>
             </a>
             <!-- Desktop Submenu -->
-            <ul
+            <!-- <ul
               class="absolute top-full left-0 mt-2 w-48 bg-[#011546]/90 backdrop-blur-md rounded-lg shadow-lg border border-purple-500/20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out z-50"
               in:fade={{ duration: 200, easing: sineOut }}
               out:fade={{ duration: 150, easing: sineOut }}
@@ -170,17 +180,19 @@
                   Analytics
                 </a>
               </li>
-            </ul>
+            </ul> -->
           </li>
         
-          <li>
-            <button
-            on:click={(e) => handleNavigation(e, '/#contact')}
-            class="bg-[#6504B0] hover:bg-[#C961DE] py-2 px-4 lg:px-6 rounded-lg text-sm lg:text-base font-semibold text-white transition-colors duration-300"
-          >
-            Contact Us
-          </button>
-          </li>
+         <li>
+  <button
+    on:click={(e) => handleNavigation(e, '/#contact')}
+    class="bg-gradient-to-r from-[#6504B0] to-[#C961DE]  py-2 px-4 lg:px-6 rounded-lg text-sm lg:text-base font-semibold text-white transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+  >
+    <Icon icon="mdi:calendar-check" class="text-lg" />
+    <span>Book a Demo</span>
+  </button>
+</li>
+
         </ul>
       </div>
 
@@ -237,6 +249,16 @@
             </a>
           </li>
           <li>
+            <a
+              href="/about_us"
+              on:click={(e) => handleNavigation(e, '/#solution')}
+              class="text-white/90 hover:text-white transition-colors duration-300 flex items-center gap-3"
+            >
+            <Icon icon="mdi:folder" width="20" height="20" />
+            <span>Solutions</span>
+            </a>
+          </li>
+          <!-- <li>
             <button
               class="w-full text-left text-white/90 hover:text-white transition-colors duration-300 flex items-center justify-between"
               on:click={toggleSolutions}
@@ -290,7 +312,7 @@
                 </li>
               </ul>
             {/if}
-          </li>
+          </li> -->
           <li>
             <a
               href="/#contact"

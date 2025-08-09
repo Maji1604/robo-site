@@ -80,7 +80,7 @@
   <svelte:window on:mousemove={handleMouseMove} />
 
 
-<div id="innovation" class="px-6 md:px-0 lg:mt-24 md:mt-16 mb-5 md:mb-0 mt-0 overflow-hidden">
+<div id="innovation" class="px-6 md:px-6 lg:mt-24 md:mt-16 mb-5 md:mb-0 mt-0 overflow-hidden">
     {#if visibleSections.innovation}
     <div in:fly={{ y: 30, duration: 800 }}>
         <div class="text-center !font-ubuntu lg:mb-16 md:mb-12 mb-8">
