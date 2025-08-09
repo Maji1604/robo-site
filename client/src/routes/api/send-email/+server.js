@@ -2,8 +2,8 @@
 import { json } from '@sveltejs/kit';
 
 // const RESEND_API_KEY = 're_NQ9f4R1P_MdyxioTRhSVEs5dxvrxfjgMu';  info mail
-const RESEND_API_KEY="re_26VudLLE_2N8do7voUM6RUHPaBh7RxLE9" //hr mail
-// @ts-ignore
+const VITE_RESEND_API_KEY=import.meta.env.VITE_RESEND_API_KEY //hr mail
+// @ts-ignore      
 export async function POST({ request }) {
   try {
     const payload = await request.json();
@@ -32,7 +32,7 @@ export async function POST({ request }) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${RESEND_API_KEY}`,
+        Authorization: `Bearer ${VITE_RESEND_API_KEY}`,
       },
       body: JSON.stringify({
         from: 'Creoleap Careers <onboarding@resend.dev>',

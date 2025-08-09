@@ -186,7 +186,7 @@
          <li>
   <button
     on:click={(e) => handleNavigation(e, '/#contact')}
-    class="bg-gradient-to-r from-[#6504B0] to-[#C961DE]  py-2 px-4 lg:px-6 rounded-lg text-sm lg:text-base font-semibold text-white transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+    class="bg-gradient-to-r from-[#6504B0] to-[#C961DE]  py-2 px-4 lg:px-6 rounded-lg text-sm lg:text-base font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
   >
     <Icon icon="mdi:calendar-check" class="text-lg" />
     <span>Book a Demo</span>
