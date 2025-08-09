@@ -29,20 +29,15 @@
     }
 
     const payload = {
-      service_id: 'service_d1pb0w7',
-      template_id: 'template_5eda1rn',
-      user_id: 'CdswteZ6BTKu2ZOE3',
-      template_params: {
-        name: formValues.name,
-        email: formValues.email,
-        mobile: formValues.mobile,
-        interestedServices: selectedServices.join(", "), // Convert array to string
-        message: formValues.message || 'N/A',
-      },
+      name: formValues.name,
+      email: formValues.email,
+      mobile: formValues.mobile,
+      interestedServices: selectedServices.join(", "), // Convert array to string
+      message: formValues.message || 'N/A',
     };
 
     try {
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      const response = await fetch('/api/info-email', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,16 +45,15 @@
         body: JSON.stringify(payload),
       });
 
-      const responseText = await response.text();
+      const responseData = await response.json();
 
       if (response.ok) {
         toast.success('Your message has been sent successfully!');
-        // Reset the form after successful submission
-        event.target.reset();
+        event.target?.reset();
         selectedServices = []; // Reset the selected services
       } else {
-        console.error('Server response:', responseText);
-        toast.error(`Failed to send email. Status: ${response.status}. Please check console for details.`);
+        console.error('Server response:', responseData);
+        toast.error(responseData.error || 'Failed to send email. Please check console for details.');
       }
     } catch (error) {
       console.error('Error sending email:', error);
@@ -75,6 +69,7 @@
     window.open('https://maps.app.goo.gl/kUjsAFRMcU9PRVkM9?g_st=com.google.maps.preview.copy', '_blank');
   }
 </script>
+
 
 <div class="bg-gradient-to-br from-[#080A25] to-[#0a015a] p-4 sm:p-8 md:p-12 lg:p-20 text-white">
   <!-- Grid Layout -->

@@ -1,8 +1,8 @@
 
 import { json } from '@sveltejs/kit';
 
-const RESEND_API_KEY = 're_NQ9f4R1P_MdyxioTRhSVEs5dxvrxfjgMu'; // Your Resend API key
-
+// const RESEND_API_KEY = 're_NQ9f4R1P_MdyxioTRhSVEs5dxvrxfjgMu';  info mail
+const RESEND_API_KEY="re_26VudLLE_2N8do7voUM6RUHPaBh7RxLE9" //hr mail
 // @ts-ignore
 export async function POST({ request }) {
   try {
@@ -36,13 +36,13 @@ export async function POST({ request }) {
       },
       body: JSON.stringify({
         from: 'Creoleap Careers <onboarding@resend.dev>',
-        to: ['info@creoleap.com'],
+        to: ['hr@creoleap.com'],
         subject: `Job Application from ${firstName} ${lastName}`,
         html: emailHtml,
         attachments: [
           {
             filename: `${firstName}_${lastName}_resume.pdf`,
-            content: resumeBase64, // Base64-encoded PDF
+            content: resumeBase64, 
             type: 'application/pdf',
           },
         ],
